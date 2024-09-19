@@ -1,0 +1,1629 @@
+---
+title: "Global Migration and Attractive Destinations"
+author: "Niloufar and Nasim"
+format: 
+  revealjs:
+    slide-number: true
+    number-sections: false
+    scrollable: true
+    smaller: true
+    toc: true
+    toc-depth: 1
+
+---
+# <span style="text-align: center; justify-content: center; font-size: 1.4em;" >Global Migration Status</span>
+
+
+
+```{python}
+import pandas as pd
+import numpy as np
+
+from pandas.core.tools.numeric import to_numeric
+import geopandas as gpd
+
+import plotly as px
+import plotly.express as px # for interactive plots
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
+import matplotlib.pyplot as plt
+
+import os
+import warnings
+warnings.filterwarnings("ignore")
+```
+
+
+```{python}
+# First table of Age, Sex dataset. 
+# It contains the international migrant stock for different age range and sex from 1960 t0 2020
+#| include: false
+columns_to_exclude =  ['Index','Notes','Location code']
+age_sex = pd.read_excel('Age, Sex.xlsx', 
+                        skiprows = 10, usecols= lambda x: x not in columns_to_exclude ,
+                        sheet_name= None)
+int_migrant_stock = age_sex['Table 1']
+
+
+# Second table of Age, Sex dataset. 
+# It contains the total population for different age range and sex from 1960 to 2020
+
+total_population = age_sex['Table 2']
+```
+
+
+```{python}
+# Converting the age range columns into age and defining and gender column
+#| include: false
+id_vars = ['Year','Region, development group, country or area','Type of data']
+int_migrant_stock = int_migrant_stock.melt(id_vars=id_vars, var_name='age_gender', value_name= 'int_migrant_stock')
+int_migrant_stock[['age','gender']] = int_migrant_stock['age_gender'].str.split('.',expand=True)
+int_migrant_stock.drop(columns = 'age_gender',inplace = True)
+int_migrant_stock['gender'] = int_migrant_stock['gender'].apply(lambda x: 'total' if pd.isna(x) else 'male' if x == '1' else 'female' if x == '2' else x)
+int_migrant_stock = int_migrant_stock.drop_duplicates()
+```
+
+
+```{python}
+# Creating new column which indicates the type of object in 'Region, development group, country or area' as Continent, Region and country
+#| include: false
+titles = []
+
+for index, row in int_migrant_stock.iterrows():
+    text = row['Region, development group, country or area'] 
+    current_indentation = len(text) - len(text.lstrip())
+    
+    if current_indentation == 0:
+        titles.append('World')
+    elif current_indentation == 1:
+        titles.append('Continent')
+    elif current_indentation == 2:
+        titles.append('Region')    
+    elif current_indentation == 3:
+        titles.append('Country') 
+    else:
+        subtitles.append(False)
+int_migrant_stock['title'] = titles
+```
+
+
+```{python}
+# Create new columns for 'continent' and 'region'
+#| include: false
+current_continent = ''
+current_region = ''
+
+# Iterate through the DataFrame and fill in the 'continent' and 'region' columns
+for index, row in int_migrant_stock.iterrows():
+    if row['title'] == 'Continent':
+        current_continent = row['Region, development group, country or area']
+        current_region = ''  # Reset current_region when continent changes
+    elif row['title'] == 'Region':
+        current_region = row['Region, development group, country or area']
+    else:
+        if current_region:
+            int_migrant_stock.at[index, 'continent'] = current_continent
+            int_migrant_stock.at[index, 'region'] = current_region
+        else:
+            int_migrant_stock.at[index, 'continent'] = current_continent
+            int_migrant_stock.at[index, 'region'] = current_continent
+
+# Drop rows with 'continent' values empty (if needed)
+int_migrant_stock = int_migrant_stock[int_migrant_stock['title'] != "Continent"]
+
+# Reset the index of the DataFrame if needed
+int_migrant_stock.reset_index(drop=True, inplace=True)
+```
+
+
+```{python}
+#| include: false
+int_migrant_stock['continent']=int_migrant_stock['continent'].str.lstrip()
+int_migrant_stock['region']=int_migrant_stock['region'].str.lstrip()
+```
+
+
+```{python}
+# Converting the age range columns into age and defining and gender column
+#| include: false
+id_vars = total_population.columns[:3].to_list()
+total_population = total_population.melt(id_vars = id_vars, var_name = 'age_gender', value_name= 'total_pop' )
+total_population[['age','gender']] = total_population['age_gender'].str.split('.',expand=True)
+total_population.drop(columns = 'age_gender',inplace = True)
+total_population['gender'] = total_population['gender'].apply(lambda x: 'total' if pd.isna(x) else 'male' if x == '1' else 'female' if x == '2' else x)
+total_population = total_population.drop_duplicates()
+
+```
+
+
+```{python}
+# Combining 2 datasets of population and migration
+#| include: false
+pop_stock = int_migrant_stock.merge(total_population, how= 'inner', 
+                                    on = ['Year' , 'Region, development group, country or area',
+                                          'Type of data' , 'age' , 'gender',])
+
+# Renaming columns
+pop_stock.rename(columns = {'total_pop':'population' , 'Year':'year'}, inplace = True)
+
+# Creating age_range column and removing age column
+pop_stock['age_range'] = pop_stock['age'].apply(lambda x: 'children' if x in ['0-4', '5-9', '10-14'] else
+                                                'young adult' if x in [' 15-19', '20-24', '25-29', '30-34', '35-39'] else
+                                                'middle_age adult' if x in ['40-44', '45-49', '50-54', '55-59'] else
+                                                'old adult' if x in ['60-64', '65-69','70-74', '75+'] else x)
+pop_stock.drop(columns = 'age',inplace = True)
+
+```
+
+
+```{python}
+# replacing the .. value in dataset with NA and changing the values of migration stock and population into number
+#| include: false
+pop_stock = pop_stock.replace('..', pd.NA)
+pop_stock[['int_migrant_stock','population']] = pop_stock[['int_migrant_stock','population']].apply(pd.to_numeric)
+pop_stock['population'] = pop_stock['population'].apply(lambda x: x*1000)
+```
+
+
+```{python}
+# Removing rows than contain WORLD as Region, development group, country or area
+#| include: false
+pop_stock = pop_stock[pop_stock['Region, development group, country or area'] != 'WORLD'].reset_index(drop=True)
+
+# Removing rows that contain NA in 'int_migrant_stock' and 'total_pop' columns
+pop_stock.dropna(subset = ['int_migrant_stock', 'population'] , inplace = True)
+
+```
+
+
+```{python}
+# Removing rows that contain Nan value in their 'type of data' column.
+#| include: false
+pop_stock.dropna(subset=['Type of data'],inplace = True)
+
+# Renaming the column
+pop_stock = pop_stock.rename(columns = {'Region, development group, country or area':'country'}).reset_index(drop = True)
+
+# Editing some of the names of countries like removing extra spaces and * and coverting the first letter of countries name to capital
+pop_stock['country'] = pop_stock['country'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+pop_stock['continent'] = pop_stock['continent'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+pop_stock['region'] = pop_stock['region'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+```
+
+
+```{python}
+# Creating a new column fo the total population for the destination country in each year
+#| include: false
+years = list(pop_stock.year.unique())
+countries = list(pop_stock['country'].unique())
+
+# Create a dictionary to store pre-calculated total_pop values
+total_pop_dict = {}
+
+for year in years:
+    for country in countries:
+        # Filter the DataFrame for the specific year, country, age, and gender criteria
+        mask = (pop_stock['year'] == year) & (pop_stock['country'] == country) & (pop_stock['age_range'] == 'Total') & (pop_stock['gender'] == 'total')
+          
+        if not pop_stock[mask].empty:
+            total_pop = pop_stock[mask]['population'].values[0]
+            total_pop_dict[(year, country)] = total_pop
+            
+pop_stock['total_population'] = pd.Series(list(zip(pop_stock['year'], pop_stock['country']))).map(total_pop_dict.get)
+```
+
+
+```{python}
+# Creating a new column named migration percentage which is the percentage of migration stock devided by total population
+#| include: false
+pop_stock['mig_percentage'] = (pop_stock['int_migrant_stock']*100/pop_stock['population'])
+pop_stock['total_mig_percentage'] = (pop_stock['int_migrant_stock']*100/pop_stock['total_population'])
+
+# Reordering the columns
+column_order = ['year' , 'country' , 'continent' , 'region' , 'gender' , 'age_range' ,
+                'int_migrant_stock' , 'population', 'mig_percentage' ,
+                'total_population', 'total_mig_percentage']
+pop_stock = pop_stock[column_order]
+
+```
+
+
+```{python}
+# Matching the names of countries in our dataSet by countries name in reference map
+#| include: false
+
+pop_stock['country'] = pop_stock['country'].apply(lambda x: 'Antigua and Barbuda' if x == 'Antigua And Barbuda' else
+                                                            'The Bahamas' if x == 'Bahamas' else
+                                                            'Bolivia' if x == 'Bolivia (Plurinational State Of)' else
+                                                            'Bosnia and Herzegovina' if x == 'Bosnia And Herzegovina' else
+                                                            'Brunei' if x == 'Brunei Darussalam' else
+                                                            'Cape Verde' if x == 'Cabo Verde' else
+                                                            'Hong Kong S.A.R.' if x == 'China, Hong Kong Sar' else 
+                                                            'Macao S.A.R' if x == 'China, Macao Sar' else 
+                                                            'Republic of Congo' if x == 'Congo' else 
+                                                            'North Korea' if x == 'Dem. People\'S Republic Of Korea' else
+                                                            'Democratic Republic of the Congo' if x == 'Democratic Republic Of The Congo' else 
+                                                            'Falkland Islands' if x == 'Falkland Islands (Malvinas)' else 
+                                                            'Guinea Bissau' if x == 'Guinea-Bissau' else
+                                                            'Iran' if x == 'Iran (Islamic Republic Of)' else
+                                                            'Isle of Man' if x == 'Isle Of Man' else
+                                                            'Federated States of Micronesia' if x == 'Micronesia (Fed. States Of)' else
+                                                            'South Korea' if x == 'Republic Of Korea' else 
+                                                            'Saint Kitts and Nevis' if x == 'Saint Kitts And Nevis' else
+                                                            'Saint Pierre and Miquelon' if x == 'Saint Pierre And Miquelon' else 
+                                                            'Saint Vincent and the Grenadines' if x == 'Saint Vincent And The Grenadines' else
+                                                            'Sao Tome and Principe' if x == 'Sao Tome And Principe' else 
+                                                            'Republic of Serbia' if x == 'Serbia' else
+                                                            'Russia' if x == 'Russian Federation' else 
+                                                            'Sint Maarten' if x == 'Sint Maarten (Dutch Part)' else 
+                                                            'Palestine' if x == 'State Of Palestine' else
+                                                            'Syria' if x == 'Syrian Arab Republic' else 
+                                                            'Trinidad and Tobago' if x == 'Trinidad And Tobago' else
+                                                            'Turks and Caicos Islands' if x == 'Turks And Caicos Islands' else
+                                                            'United Republic of Tanzania' if x == 'United Republic Of Tanzania' else 
+                                                            'United States of America' if x == 'United States Of America' else
+                                                            'Venezuela' if x == 'Venezuela (Bolivarian Republic Of)' else 
+                                                            'Vietnam' if x == 'Viet Nam' else 
+                                                            'Wallis and Futuna' if x == 'Wallis And Futuna Islands' else x )
+```
+
+## International Migration stock in the world (From 1990 to 2020)
+
+
+```{python}
+# Creating continent dataset
+#| include: false
+pop_stock_total = pop_stock[pop_stock['age_range'] == 'Total']
+pop_stock_total = pop_stock_total[pop_stock_total['gender'] == 'total']
+continent_df = pop_stock_total.groupby(['continent','year'])[['population','int_migrant_stock']].sum().reset_index()
+continent_df['mig_percentage'] = (continent_df['int_migrant_stock']*100/continent_df['population'])
+
+```
+
+
+```{python}
+# Yearly Barchart stacked by continent
+
+continent_df.sort_values('int_migrant_stock', ascending=False, inplace = True)
+fig = px.bar(continent_df, x='year', y='int_migrant_stock', color='continent', barmode='stack')
+
+fig.update_layout(
+    xaxis_title='year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title = 'International Migrant Stock per Continent',
+    height=400
+)
+
+# Addin annotation
+continent_df['cumulative_migrant_stock'] = continent_df.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the stacked bar chart
+fig = px.bar(continent_df, x='year', y='int_migrant_stock', color='continent', barmode='stack')
+
+# Add cumulative annotations with separator
+separator = ','  # Choose your separator, e.g., ',' or '.'
+for year in continent_df['year'].unique():
+    cumulative_value = continent_df.loc[continent_df['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the chosen separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title='Total International Migrant Stock',
+    height=600,
+    width=1000
+)
+
+fig.show()
+
+```
+
+
+
+## Migration Stock in Continents and Regions (From 1990 to 2020)
+
+
+```{python}
+# Creating Region dataset
+#| include: false
+region_df = pop_stock_total.groupby(['region','continent','year'])[['population','int_migrant_stock']].sum().reset_index()
+region_df['mig_percentage'] = (region_df['int_migrant_stock']*100/region_df['population'])
+```
+
+
+```{python}
+#| include: false
+region_df.sort_values(['region', 'continent', 'year'], ascending=[True, True, False], inplace=True)
+region_df.sort_values(['region', 'continent','int_migrant_stock'], ascending=False, inplace = True)
+```
+
+
+```{python}
+# Migration Stock in Continents and Regions Between 1990 to 2020
+
+region_df.sort_values('int_migrant_stock', ascending=False, inplace = True)
+
+unique_years = region_df['year'].unique()[::-1]
+
+fig = px.bar(region_df, x='continent', y='int_migrant_stock', color='region', barmode='stack', 
+             animation_frame='year', animation_group='region',
+             category_orders={"year": unique_years})
+
+fig.update_layout(
+    xaxis_title='Continent',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title='International Migrant Stock in Continents and Regions',
+    xaxis_title_standoff=0,
+    xaxis_tickangle=20,
+    height=700, 
+    width=1000
+)
+
+fig.update_yaxes(range=[0, region_df['int_migrant_stock'].max() * 1.6])  # Adjust the multiplier as needed
+
+fig.show()
+```
+
+
+
+## International Migration Stocks and Population (From 1990 to 2020) 
+
+
+```{python}
+# Migration trend in different regions in bubble graph 
+#| include: false
+unique_years = region_df['year'].unique()[::-1]
+
+fig = px.scatter(
+    region_df,
+    x= 'population',
+    y= 'int_migrant_stock',
+    size= 'mig_percentage',
+    color= 'continent', 
+    hover_name= 'region', 
+    animation_frame= 'year',
+    category_orders={"year": unique_years},
+    title= 'Comparion of Regions based on International Migrant Stock and Population'
+)
+
+fig.add_annotation(
+    text= 'Size represents migration percentage',
+    xref= 'paper',
+    yref= 'paper',
+    x=0.02,
+    y=1,
+    showarrow=False,
+    font=dict(size=14),
+)
+
+fig.update_layout(
+    xaxis_title='Population',
+    yaxis_title='Migration Stock',
+    showlegend=True,
+    xaxis_tickformat='s',
+    height=600, 
+    width=1000
+)
+
+fig.update_xaxes(range=[0,1.95e+09])
+fig.update_yaxes(range=[0, 6.1e+07])
+
+fig.show()
+```
+
+## International Migration Change In The World
+
+```{python}
+# Reading the map file data
+#| include: false
+shape_map = gpd.read_file('countries.geojson')
+```
+
+
+```{python}
+# Merging the map file dataSet with pop_mig
+#| include: false
+pop_stock_map = shape_map.merge(pop_stock, left_on = 'ADMIN', right_on = 'country', how = 'inner')
+```
+
+
+```{python}
+# Trends of migrant stock on map for total age_range and gender
+
+pop_stock_map_total = pop_stock_map[pop_stock_map['age_range'] == 'Total']
+pop_stock_map_total = pop_stock_map_total[pop_stock_map_total['gender'] == 'total']
+
+fig = px.choropleth(
+    pop_stock_map_total,
+    locations='ISO_A3',
+    color='int_migrant_stock',
+    hover_name="ADMIN",
+    projection='natural earth',
+    animation_frame='year',
+    title='International Migrant Stock on map',
+    color_continuous_scale=[
+        (0.0, 'lightblue'),  # Colors for values below the threshold (e.g., light blue)
+        (1, 'darkblue')  # Colors for values above the threshold (e.g., dark blue)
+    ]
+)
+fig.update_layout(height=600, width=850)
+fig.update_geos(showcoastlines=True, coastlinecolor='Black')
+fig.show()
+```
+
+
+# <span style="text-align: center; justify-content: center; font-size: 1.4em;" >Demographic Characteristic of Global Migration</span>
+
+## Gender Analysis of International Migration Across Continents
+
+
+```{python}
+# Sunburst plot for 2 path of continent -> gender and gender -> continent
+pop_stock_sunburst = pop_stock[(pop_stock['age_range'] != 'Total') & (pop_stock['gender'] != 'total')]
+
+# Get unique years
+years = pop_stock_sunburst['year'].unique()
+
+# Create subplot with 1 row and 2 columns, specifying subplot types as 'sunburst'
+fig = make_subplots(rows=1, cols=2, subplot_titles=('Path: continent -> gender', 'Path: gender -> continent'), specs=[[{'type': 'sunburst'}, {'type': 'sunburst'}]])
+path_list = [['continent', 'gender'], ['gender', 'continent']]
+
+# Create the sunburst data for each year and add to subplot
+traces = []
+for i, year in enumerate(years):
+    for j, paths in enumerate(path_list):
+        sunburst_fig = px.sunburst(pop_stock_sunburst[pop_stock_sunburst['year'] == year],
+                                   path=paths,
+                                   values='int_migrant_stock',
+                                   title=f'International Migrant Stock and Gender - Year {year}'
+                                   )
+
+        # Add sunburst plot to subplot
+        for trace in sunburst_fig.data:
+            traces.append(trace)
+            fig.add_trace(trace, row=1, col=j + 1)
+
+# Create the button labels and method
+buttons = []
+for i, year in enumerate(years):
+    buttons.append(
+        dict(label=str(year),
+             method='update',
+             args=[{'visible': [(i * len(path_list) <= j < (i + 1) * len(path_list)) for j in range(len(traces))]},
+                   {
+                       "title": f'International Migrant Stock and Gender - {year}',
+                   }
+                   ]
+             )
+    )
+
+# Set layout for the subplots
+fig.update_layout(
+    updatemenus=[
+        dict(type="buttons",
+             showactive=False,
+             buttons=buttons,
+             x=0.475,
+             xanchor="left",
+             y=0.8,
+             yanchor="top",
+                     )
+    ],
+    title="International Migrant Stock and Gender",
+    title_x=0.5,
+    height=600, 
+    width=1000,
+    margin=dict(t=50, l=0, r=0, b=0)
+)
+
+# Update trace information
+fig.update_traces(textinfo='label + percent entry')
+
+# Show the figure
+fig.show()
+```
+
+
+
+## Age Analysis of International Migration Across Continents
+| Title            | Age range   |
+| ---------------- | ----------- |
+| children         | 0-14        |
+| young adult      | 15-39       |
+| middle_age adult | 40-59       |
+| old adult        | +60         |
+
+
+
+```{python}
+# Sunburst plot for 2 path of continent -> gender and gender -> continent
+pop_stock_sunburst = pop_stock[(pop_stock['age_range'] != 'Total') & (pop_stock['gender'] != 'total')]
+
+# Get unique years
+years = pop_stock_sunburst['year'].unique()
+
+# Create subplot with 1 row and 2 columns, specifying subplot types as 'sunburst'
+fig = make_subplots(rows=1, cols=2, subplot_titles=('Path: continent -> age range', 'Path: age range -> continent'), specs=[[{'type': 'sunburst'}, {'type': 'sunburst'}]])
+path_list = [['continent', 'age_range'], ['age_range', 'continent']]
+
+# Create the sunburst data for each year and add to subplot
+traces = []
+for i, year in enumerate(years):
+    for j, paths in enumerate(path_list):
+        sunburst_fig = px.sunburst(pop_stock_sunburst[pop_stock_sunburst['year'] == year],
+                                   path=paths,
+                                   values='int_migrant_stock',
+                                   title=f'International Migrant Stock and Age - Year {year}'
+                                   )
+
+        # Add sunburst plot to subplot
+        for trace in sunburst_fig.data:
+            traces.append(trace)
+            fig.add_trace(trace, row=1, col=j + 1)
+
+# Create the button labels and method
+buttons = []
+for i, year in enumerate(years):
+    buttons.append(
+        dict(label=str(year),
+             method='update',
+             args=[{'visible': [(i * len(path_list) <= j < (i + 1) * len(path_list)) for j in range(len(traces))]},
+                   {
+                       "title": f'International Migrant Stock and Age - {year}',
+                   }
+                   ]
+             )
+    )
+
+# Set layout for the subplots
+fig.update_layout(
+    updatemenus=[
+        dict(type="buttons",
+             showactive=False,
+             buttons=buttons,
+             x=0.475,
+             xanchor="left",
+             y=0.8,
+             yanchor="top"
+        )
+    ],
+    title="International Migrant Stock and Age",
+    title_x=0.5,
+    height=600, 
+    width=1000,
+    margin=dict(t=50, l=0, r=0, b=0)
+)
+
+# Update trace information
+fig.update_traces(textinfo='label + percent entry')
+
+# Show the figure
+fig.show()
+```
+
+
+# <span style="text-align: center; justify-content: center; font-size: 1.4em;" >Top-3 Destination Countries</span>
+## Countries with highest amount of International Migration Stock
+
+
+```{python}
+# Treemap for selecting our destination country
+
+pop_stock_Treemap = pop_stock[(pop_stock['age_range'] != 'Total') & (pop_stock['gender'] != 'total')]
+
+years = pop_stock_Treemap['year'].unique()  
+
+# Create the sunburst data for each year
+data = []
+for year in years:
+    data.append(
+        px.treemap(pop_stock_Treemap[pop_stock_Treemap['year'] == year],
+                    path=['continent','region','country'],
+                    values='int_migrant_stock',
+                    title=f'International Migrant Stock Treemap - Year {year}'
+                    ).data[0]
+    )
+
+# Set the initial visibility for all data
+visible_data = [True] * len(data)
+
+# Create the button labels and method
+buttons = []
+for i, year in enumerate(years):
+    buttons.append(
+        dict(label=str(year),
+             method='update',
+             args=[
+                 {'visible': [i == j for j in range(len(data))]},
+                 {'title': f'International Migrant Stock Treemap - {year}'}
+             ]
+        )
+    )
+
+fig = go.Figure(data=data)
+
+fig.update_layout(
+    updatemenus=[
+        dict(type="buttons",
+             showactive=False,
+             buttons=buttons,
+             x=-0.1,
+             xanchor="left",
+             y=0.95,
+             yanchor="top"
+        )
+    ],
+    title="International Migrant Stock Treemap",
+    title_x=0.5,
+    height=600,
+    width=1000,
+    margin=dict(t=50, l=0, r=0, b=0)
+)
+```
+
+
+## Selected Countries
+
+<span style="font-size: 1.4em;"> **Europe** </span>
+
++ <span style="font-size: 1em;"> Germany </span>
+
+<span style="font-size: 1.4em;"> **Asia** </span>
+
++ <span style="font-size: 1em;"> Saudi Arabia</span>
+
+<span style="font-size: 1.4em;"> **Northern America** </span>
+
++ <span style="font-size: 1em;"> United state of America</span>
+
+## For which countries, United States of America is a magnet?
+
+
+
+```{python}
+# Importing data from Destination and Origin dataset
+#| include: false
+columns_to_exclude =  ['Index','Notes of destination','Location code of destination', 'Location code of origin']
+orig_dest_df = pd.read_excel('Destination and Origin.xlsx', skiprows= 10, usecols = lambda x: x not in columns_to_exclude, sheet_name = None )
+orig_dest = orig_dest_df['Table 1']
+```
+
+
+```{python}
+# Creating 2 new columns of dest_title and orig_title
+#| include: false
+dest_title = []
+for index, row in orig_dest.iterrows():
+    dest_text = row['Region, development group, country or area of destination']
+    current_indentation = len(dest_text)-len(dest_text.lstrip())
+    
+    if current_indentation == 0:
+        dest_title.append('World')
+    elif current_indentation == 1:
+        dest_title.append('Continent')   
+    elif current_indentation == 2:
+        dest_title.append('Region')
+    elif current_indentation == 3:
+        dest_title.append('Country')
+    else:
+        dest_title.append(False)
+        
+orig_dest['dest_title'] = dest_title
+
+orig_title = []
+for index, row in orig_dest.iterrows():
+    orig_text = row['Region, development group, country or area of origin']
+    current_indentation = len(orig_text)-len(orig_text.lstrip())
+    
+    if 'Other' in orig_text:
+        orig_title.append('Country')
+    elif current_indentation == 0:
+        orig_title.append('World')
+    elif current_indentation == 1:
+        orig_title.append('Continent')   
+    elif current_indentation == 2:
+        orig_title.append('Region')
+    elif current_indentation == 3:
+        orig_title.append('Country')
+    else:
+        orig_title.append(False)
+        
+orig_dest['orig_title'] = orig_title
+```
+
+
+```{python}
+# Reordering the columns
+#| include: false
+column_order = ['Type of data of destination' , 'Region, development group, country or area of destination' , 'dest_title' , 
+            'Region, development group, country or area of origin' , 'orig_title' ]
+orig_dest = orig_dest[column_order + [col for col in orig_dest.columns if col not in column_order]]
+```
+
+
+```{python}
+# Creating year and gender columns
+#| include: false
+id_vars = orig_dest.columns[:5].to_list()
+orig_dest = orig_dest.melt(id_vars = id_vars , var_name = 'year_gender' , value_name= 'int_migrant_stock')
+orig_dest['gender'] = orig_dest['year_gender'].apply(lambda x: 'male' if '.1' in str(x) else
+                                                            'female' if '.2' in str(x) else
+                                                            'total')
+orig_dest['year'] = orig_dest['year_gender'].apply(lambda x: str(x).split('.')[0] if '.' in str(x) else
+                                                           x).apply(pd.to_numeric)
+orig_dest.drop(columns = 'year_gender', inplace = True)
+```
+
+
+```{python}
+# filtering the dataset based on the the value of Country for dest_title and orig_title
+#| include: false
+orig_dest = orig_dest[(orig_dest['dest_title']=='Country') & (orig_dest['orig_title']=='Country')]
+
+# Renaming the columns
+orig_dest['dest_country'] = orig_dest['Region, development group, country or area of destination'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+orig_dest['origin_country'] = orig_dest['Region, development group, country or area of origin'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+
+# Removing the columns
+orig_dest= orig_dest.drop(columns = ['Region, development group, country or area of destination',
+                                     'dest_title',
+                                     'Region, development group, country or area of origin',
+                                     'orig_title', 
+                                     'Type of data of destination'])
+
+# Reordering the columns
+column_order = ['year' , 'dest_country' , 'origin_country','gender']
+orig_dest = orig_dest[column_order + [col for col in orig_dest.columns if col not in column_order]]
+orig_dest.reset_index(drop = True, inplace = True)
+
+```
+
+
+```{python}
+# filter some specific destination countries based on treemap and filtering top 5 origin countries for them
+#| include: false
+country_list = ['United States Of America', 'Germany', 'Saudi Arabia', 'Canada', 'France', 'Australia' , 
+                'United Arab Emirates' , 'Russian Federation', 'United Kingdom']
+orig_dest_total = orig_dest[(orig_dest['dest_country'].isin(country_list)) & (orig_dest['gender']=='total')].reset_index(drop = True)
+
+orig_dest_filtered = pd.DataFrame(columns=['year' , 'dest_country' , 'origin_country' , 'gender'])
+for country in country_list:
+    for year in orig_dest_total['year'].unique():
+        df = orig_dest_total[(orig_dest_total['dest_country'] == country) & (orig_dest_total['year'] == year)] 
+        df.sort_values(by='int_migrant_stock', inplace=True, ascending=False)
+        orig_list = df.head(6)['origin_country'].unique() if 'Other' in df.head(5)['origin_country'].unique() else df.head(5)['origin_country'].unique()
+        df['origin_country'] = df['origin_country'].apply(lambda x: 'other' if x not in orig_list else 'other' if x == "Other" else x)
+        df = pd.DataFrame(df.groupby(['year','dest_country','gender','origin_country'])['int_migrant_stock'].sum().reset_index())
+        orig_dest_filtered= pd.merge(orig_dest_filtered, df, how='outer')
+```
+
+
+```{python}
+# creating a data set for average of migrant stock in the world
+#| include: false
+
+average_world = {'year': [], 'ave_mig_stock': []}
+
+for year in continent_df['year'].unique():
+    ave_mig_stock = pop_stock_Treemap[pop_stock_Treemap['year'] == year]['int_migrant_stock'].sum() / len(pop_stock_Treemap['country'].unique())
+    average_world['year'].append(year)
+    average_world['ave_mig_stock'].append(ave_mig_stock)
+
+average_world = pd.DataFrame(average_world)
+```
+
+
+```{python}
+# creating a data set for average of migrant stock in each region
+#| include: false
+country_list = ['United States of America' , 'Germany' , 'Saudi Arabia']
+average_region = {'year': [], 'region': [], 'ave_mig_stock': []}
+for year in pop_stock_Treemap['year'].unique():
+    for region in pop_stock_Treemap['region'].unique():
+        ave_mig_stock = pop_stock_Treemap[(pop_stock_Treemap['year'] == year) & (pop_stock_Treemap['region'] == region) &
+                                          (~pop_stock_Treemap['country'].isin(country_list))]['int_migrant_stock'].sum() / len(pop_stock_Treemap[(pop_stock_Treemap['year'] == year) & (pop_stock_Treemap['region'] == region)]['country'].unique())
+        average_region['year'].append(year)
+        average_region['region'].append(region)
+        average_region['ave_mig_stock'].append(ave_mig_stock)
+
+average_region = pd.DataFrame(average_region)
+```
+
+
+```{python}
+# Sankey plot for flow of immigration into United States Of America
+
+destination = 'United States Of America'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+origin_countries = source_countries['origin_country'].unique().tolist()
+
+# Create a color scale for nodes
+color_scale = [
+    'rgba(255,0,0,0.8)', 'rgba(0,255,0,0.8)', 'rgba(0,0,255,0.8)',
+    'rgba(255,255,0,0.8)', 'rgba(255,0,255,0.8)',
+    'rgba(0,255,255,0.8)', 'rgba(128,0,128,0.8)', 'rgba(255,140,0,0.8)'
+]
+
+# Assign colors to nodes based on origin or destination
+node_colors = [color_scale[i % len(color_scale)] for i in range(len(origin_countries))] + ['rgba(0,0,0,0.8)']
+color_dict = {country: color_scale[i % len(color_scale)] for i, country in enumerate(origin_countries)}
+
+# Function to get a consistent color for a given country
+def get_color(country):
+    return color_dict.get(country, 'rgba(0,0,0,0.8)')
+
+# Create initial Sankey plot
+fig = go.Figure()
+traces = []
+for year in sorted(source_countries['year'].unique().tolist()):
+    filtered_data = source_countries[source_countries['year'] == year]
+
+    # Sort nodes and links based on int_migrant_stock for the current year
+    origin_countries_sorted = (
+        filtered_data.groupby('origin_country')['int_migrant_stock']
+        .sum()
+        .sort_values(ascending=False)
+        .index
+        .tolist()
+    )
+
+    nodes = dict(
+        pad=15,
+        thickness=20,
+        line=dict(color="black", width=0.5),
+        label=origin_countries_sorted + destination_country,
+        color=[get_color(country) for country in origin_countries_sorted] + ['rgba(0,0,0,0.8)']
+    )
+
+    links = dict(
+        source=filtered_data['origin_country'].map(lambda x: origin_countries_sorted.index(x)).tolist(),
+        target=filtered_data['origin_country'].apply(lambda x: len(origin_countries_sorted)).tolist(),
+        value=filtered_data['int_migrant_stock']
+    )
+
+    sankey_trace = go.Sankey(node=nodes, link=links, name=str(year))
+    traces.append(sankey_trace)
+
+# Update layout to include buttons
+fig.update_layout(
+    title_text=f"Top-5 Countries of Origin for {destination}",
+    font_size=14,
+    height=600,
+    width=850,
+    updatemenus=[
+        dict(type="buttons", showactive=False,
+             buttons=[
+                 dict(label=str(year),
+                      method="update",
+                      args=[{"visible": [trace.name == str(year) for trace in traces]},
+                            {"title": f"Top-5 Countries of Origin for {destination} - {year}"}])
+                 for year in sorted(source_countries['year'].unique().tolist())
+             ],
+             x=-0.05,
+             y=1)
+    ]
+)
+
+# Add all traces to the figure
+for trace in traces:
+    fig.add_trace(trace)
+
+fig.show()
+```
+
+
+
+
+```{python}
+# Stack bar chart for migration stock to United States Of America comparing to the average of migrant stock in correspondent region
+
+destination = 'United States Of America'
+region = 'Northern America'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=400
+)
+
+
+# Add annotation
+source_countries['cumulative_migrant_stock'] = source_countries.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the bar chart
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+# Add cumulative annotations
+for year in source_countries['year'].unique():
+    cumulative_value = source_countries.loc[source_countries['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the specified separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=600,
+    width=850
+)
+
+fig.show()
+```
+
+
+
+## For which countries, Germany is a magnet?
+
+
+
+```{python}
+# Sankey plot for flow of immigration into Germany
+
+destination = 'Germany'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+origin_countries = source_countries['origin_country'].unique().tolist()
+
+# Create a color scale for nodes
+color_scale = [
+    'rgba(255,0,0,0.8)', 'rgba(0,255,0,0.8)', 'rgba(0,0,255,0.8)',
+    'rgba(255,255,0,0.8)', 'rgba(255,0,255,0.8)',
+    'rgba(0,255,255,0.8)', 'rgba(128,0,128,0.8)', 'rgba(255,140,0,0.8)',
+    'rgba(0,128,0,0.8)', 'rgba(0,0,128,0.8)', 'rgba(128,128,0,0.8)' 
+]
+
+# Assign colors to nodes based on origin or destination
+node_colors = [color_scale[i % len(color_scale)] for i in range(len(origin_countries))] + ['rgba(0,0,0,0.8)']
+color_dict = {country: color_scale[i % len(color_scale)] for i, country in enumerate(origin_countries)}
+
+# Function to get a consistent color for a given country
+def get_color(country):
+    return color_dict.get(country, 'rgba(0,0,0,0.8)')
+
+# Create initial Sankey plot
+fig = go.Figure()
+traces = []
+for year in sorted(source_countries['year'].unique().tolist()):
+    filtered_data = source_countries[source_countries['year'] == year]
+
+    # Sort nodes and links based on int_migrant_stock for the current year
+    origin_countries_sorted = (
+        filtered_data.groupby('origin_country')['int_migrant_stock']
+        .sum()
+        .sort_values(ascending=False)
+        .index
+        .tolist()
+    )
+
+    nodes = dict(
+        pad=15,
+        thickness=20,
+        line=dict(color="black", width=0.5),
+        label=origin_countries_sorted + destination_country,
+        color=[get_color(country) for country in origin_countries_sorted] + ['rgba(0,0,0,0.8)']
+    )
+
+    links = dict(
+        source=filtered_data['origin_country'].map(lambda x: origin_countries_sorted.index(x)).tolist(),
+        target=filtered_data['origin_country'].apply(lambda x: len(origin_countries_sorted)).tolist(),
+        value=filtered_data['int_migrant_stock']
+    )
+
+    sankey_trace = go.Sankey(node=nodes, link=links, name=str(year))
+    traces.append(sankey_trace)
+
+# Update layout to include buttons
+fig.update_layout(
+    title_text=f"Top-5 Countries of Origin for {destination}",
+    font_size=14,
+    height=600,
+    width=850,
+    updatemenus=[
+        dict(type="buttons", showactive=False,
+             buttons=[
+                 dict(label=str(year),
+                      method="update",
+                      args=[{"visible": [trace.name == str(year) for trace in traces]},
+                            {"title": f"Top-5 Countries of Origin for {destination} - {year}"}])
+                 for year in sorted(source_countries['year'].unique().tolist())
+             ],
+             x=-0.05,
+             y=1)
+    ]
+)
+
+# Add all traces to the figure
+for trace in traces:
+    fig.add_trace(trace)
+
+fig.show()
+```
+
+
+
+
+```{python}
+# Stack bar chart for migration stock to germany comparing to the average of migrant stock in correspondent region
+destination = 'Germany'
+region = 'Western Europe'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=400
+)
+
+
+
+# Add annotation
+source_countries['cumulative_migrant_stock'] = source_countries.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the bar chart
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+# Add cumulative annotations
+for year in source_countries['year'].unique():
+    cumulative_value = source_countries.loc[source_countries['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the specified separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=600,
+    width=850
+)
+
+fig.show()
+```
+
+
+
+## For which countries, Saudi Arabia is a magnet?
+
+
+
+```{python}
+# Sankey plot for flow of immigration into Saudi Arabia
+destination = 'Saudi Arabia'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+origin_countries = source_countries['origin_country'].unique().tolist()
+
+
+# Create a color scale for nodes
+color_scale = [
+    'rgba(255,0,0,0.8)', 'rgba(0,255,0,0.8)', 'rgba(0,0,255,0.8)',
+    'rgba(255,255,0,0.8)', 'rgba(255,0,255,0.8)',
+    'rgba(0,255,255,0.8)', 'rgba(128,0,128,0.8)'
+]
+
+# Assign colors to nodes based on origin or destination
+node_colors = [color_scale[i % len(color_scale)] for i in range(len(origin_countries))] + ['rgba(0,0,0,0.8)']
+color_dict = {country: color_scale[i % len(color_scale)] for i, country in enumerate(origin_countries)}
+
+# Function to get a consistent color for a given country
+def get_color(country):
+    return color_dict.get(country, 'rgba(0,0,0,0.8)')
+
+# Create initial Sankey plot
+fig = go.Figure()
+traces = []
+for year in sorted(source_countries['year'].unique().tolist()):
+    filtered_data = source_countries[source_countries['year'] == year]
+
+    # Sort nodes and links based on int_migrant_stock for the current year
+    origin_countries_sorted = (
+        filtered_data.groupby('origin_country')['int_migrant_stock']
+        .sum()
+        .sort_values(ascending=False)
+        .index
+        .tolist()
+    )
+
+    nodes = dict(
+        pad=15,
+        thickness=20,
+        line=dict(color="black", width=0.5),
+        label=origin_countries_sorted + destination_country,
+        color=[get_color(country) for country in origin_countries_sorted] + ['rgba(0,0,0,0.8)']
+    )
+
+    links = dict(
+        source=filtered_data['origin_country'].map(lambda x: origin_countries_sorted.index(x)).tolist(),
+        target=filtered_data['origin_country'].apply(lambda x: len(origin_countries_sorted)).tolist(),
+        value=filtered_data['int_migrant_stock']
+    )
+
+    sankey_trace = go.Sankey(node=nodes, link=links, name=str(year))
+    traces.append(sankey_trace)
+
+# Update layout to include buttons
+fig.update_layout(
+    title_text=f"Top-5 Countries of Origin for {destination}",
+    font_size=14,
+    height=600,
+    width=850,
+    updatemenus=[
+        dict(type="buttons", showactive=False,
+             buttons=[
+                 dict(label=str(year),
+                      method="update",
+                      args=[{"visible": [trace.name == str(year) for trace in traces]},
+                            {"title": f"Top-5 Countries of Origin for {destination} - {year}"}])
+                 for year in sorted(source_countries['year'].unique().tolist())
+             ],
+             x=-0.05,
+             y=1)
+    ]
+)
+
+# Add all traces to the figure
+for trace in traces:
+    fig.add_trace(trace)
+
+fig.show()
+```
+
+
+
+
+```{python}
+# Stack bar chart for migration stock to Saudi Arabia comparing to the average of migrant stock in correspondent region
+
+destination = 'Saudi Arabia'
+region = 'Western Asia'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=400
+)
+
+
+# Add annotation
+source_countries['cumulative_migrant_stock'] = source_countries.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the bar chart
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+# Add cumulative annotations
+for year in source_countries['year'].unique():
+    cumulative_value = source_countries.loc[source_countries['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the specified separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=600,
+    width=850
+)
+
+
+fig.show()
+```
+
+
+
+
+```{python}
+# Reading WDI dataset
+wdi = pd.read_excel('wdi.xlsx')
+```
+
+
+```{python}
+# WDI Data cleaning and preprocessing
+# Matching the names of countries in our dataSet by countries name in reference map
+#| include: false
+
+wdi['Country Name'] = wdi['Country Name'].apply(lambda x: 'Anguilla' if x == 'Angola' else
+                                                            'The Bahamas' if x == 'Bahamas, The' else
+                                                            'Brunei' if x == 'Brunei Darussalam' else
+                                                            'Republic of Congo' if x == 'Congo, Rep.' else 
+                                                            'Democratic Republic of the Congo' if x == 'Congo, Dem. Rep.' else
+                                                            'Cape Verde' if x == 'Cabo Verde' else
+                                                            'Curaçao' if x == 'Curacao' else
+                                                            'Egypt' if x == 'Egypt, Arab Rep.' else
+                                                            'Federated States of Micronesia'if x == 'Micronesia, Fed. Sts.' else
+                                                            'Gambia' if x == 'Gambia, The' else
+                                                            'Guinea Bissau' if x == 'Guinea-Bissau' else
+                                                            'Hong Kong S.A.R.' if x == 'Hong Kong SAR, China' else
+                                                            'Iran' if x == 'Iran, Islamic Rep.' else
+                                                            'Kyrgyzstan' if x == 'Kyrgyz Republic' else
+                                                            'Saint Kitts and Nevis' if x == 'St. Kitts and Nevis' else
+                                                            'South Korea' if x == 'Korea, Rep.' else
+                                                            'Saint Lucia' if x == 'St. Lucia' else
+                                                            'Macao S.A.R' if x == 'Macao SAR, China' else
+                                                            'North Korea' if x =="Korea, Dem. People's Rep." else
+                                                            'Russia' if x == 'Russian Federation' else
+                                                            'Sint Maarten' if x == 'Sint Maarten (Dutch part)' else
+                                                            'Slovakia' if x == 'Slovak Republic' else
+                                                            'Republic of Serbia' if x == 'Serbia' else
+                                                            'Turkey' if x == 'Turkiye' else
+                                                            'Syria' if x == 'Syrian Arab Republic' else
+                                                            'United Republic of Tanzania' if x == 'Tanzania' else 
+                                                            'United States of America' if x == 'United States' else
+                                                            'Venezuela' if x == 'Venezuela, RB' else
+                                                            'United States Virgin Islands' if x == 'Virgin Islands (U.S.)' else
+                                                            'Vietnam' if x == 'Viet Nam' else 
+                                                            'Yemen' if x == 'Yemen, Rep.' else x )
+```
+
+
+```{python}
+# Transpoing the years into columns
+#| include: false
+id_vars = wdi.columns[:4].to_list()
+wdi = wdi.melt(id_vars = id_vars, var_name = 'year', value_name= 'value')
+
+# Removing the extra info from year string
+wdi['year'] = wdi['year'].apply(lambda x: str(x).split(' ')[0])
+```
+
+
+```{python}
+# filtering out the dataset an removing the rows for Country Code containing NaN values
+#| include: false
+wdi = wdi[wdi['Country Code'].isna()==False]
+
+# Dropping the Series Code column
+wdi.drop('Series Code',axis = 1, inplace = True)
+
+# Replacing '..' with NaN values in the hole dataset
+wdi = wdi.replace('..',pd.NA)
+
+# Changing the numeric variables into numbers
+wdi[['year','value']] = wdi[['year','value']].apply(pd.to_numeric)
+```
+
+
+```{python}
+# Pivoring the dataset to have indicators as columns
+#| include: false
+pivoted_wdi = wdi.pivot(index = ['Country Name','Country Code','year'],
+                               columns = 'Series Name', values = 'value').reset_index()
+```
+
+# <span style="text-align: center; justify-content: center; font-size: 1.4em;" >Socio-Economic Variables of Top-3 Destinations</span>
+
+## Initial Hypothesises 
+
++ <span style="font-size: 1.3em;">GDP Per capita or Gross domestic product (GDP) per capita
+
+is an economic metric that breaks down a country's economic output per person and as an
+
+economic growth index can have an affect on attracting people from all around the world to
+
+the countries which have high GDP.</span>
+
+ 
++ <span style="font-size: 1.3em;"> Inflation is combination of several important factors like
+
+Cost of Living, Wage Levels and Economic Stability and Low inflation in a destination country
+
+can indeed serve as an absorbing factor for migrants</span>
+
+
++ <span style="font-size: 1.3em;"> Life expectancy is also related to the Quality of
+
+Healthcare, Retirement and Quality of Life and a healthier and potentially more productive
+
+workforce. So, Lower life expectancy in origin countries could be a push factor for
+
+migration. </span>
+
+##  United States of America Profile
+
+
+
+```{python}
+# United States of America Dataset
+#| include: false
+us_list = ['United States of America', 'India', 'Mexico', 'China' , 'Philippines', 'Puerto Rico', 'Cuba', 'Canada']
+us_df = pivoted_wdi[pivoted_wdi['Country Name'].isin(us_list)]
+threshold = 0.6 * len(us_df)
+us_df_clean = us_df.dropna(axis=1, thresh=threshold)
+us_df_clean.dropna(axis=0, inplace=True)
+us_df_clean['label'] = us_df_clean['Country Name'].apply(lambda x: 'United States of America' if x == 'United States of America' else 'Origin Countries')
+columns_to_groupby = ['year', 'label']
+columns_to_mean = ['GDP growth (annual %)', 'GDP per capita (current US$)', 'Inflation, consumer prices (annual %)', 'Life expectancy at birth, total (years)', 'Population growth (annual %)']
+us = us_df_clean.groupby(columns_to_groupby)[columns_to_mean].mean().reset_index()
+count_per_year = us.groupby('year')['label'].nunique()
+us_df = us[us['year'].isin(count_per_year[count_per_year == 2].index)]
+```
+
+
+```{python}
+#United States of America WDI profile
+# Assuming 'origin' column represents the origin country
+us_data = us_df[us_df['label'] == 'United States of America']
+origin_data = us_df[us_df['label'] == 'Origin Countries']  # Replace 'origin' with the actual origin country name
+
+# Create subplots with 2 rows and 2 columns
+fig, axs = plt.subplots(3, 1, figsize=(10, 8))
+fig.suptitle('Comparison of Financial indices in United States of America and Origin Countries')
+
+# Plot life expectancy in the first subplot
+axs[0].plot(origin_data['year'], origin_data['Life expectancy at birth, total (years)'], color='red', label='Origin Countries')
+axs[0].plot(us_data['year'], us_data['Life expectancy at birth, total (years)'], color='blue', label='United States of America')
+axs[0].set_title('Life expectancy')
+axs[0].legend()
+
+# Plot GDP per capita in the second subplot
+axs[1].plot(origin_data['year'], origin_data['GDP per capita (current US$)'], color='red', label='Origin Countries')
+axs[1].plot(us_data['year'], us_data['GDP per capita (current US$)'], color='blue', label='United States of America')
+axs[1].set_title('GDP per capita')
+axs[1].legend()
+
+# Plot inflation in the third subplot
+axs[2].plot(origin_data['year'], origin_data['Inflation, consumer prices (annual %)'], color='red', label='Origin Countries')
+axs[2].plot(us_data['year'], us_data['Inflation, consumer prices (annual %)'], color='blue', label='United States of America')
+axs[2].set_title('Inflation')
+axs[2].legend()
+
+# Adjust layout
+fig.tight_layout(rect=[0, 0, 1, 0.96])
+
+plt.show()
+```
+
+## Germany profile
+
+```{python}
+# Germany Dataset
+#| include: false
+germany_list = ['Germany', 'Poland', 'Turkey', 'Russia' , 'Kazakhstan', 'Syria', 'Republic of Serbia', 'Italy', 'Romania','Czechia', 'Greece']
+germany_df = pivoted_wdi[pivoted_wdi['Country Name'].isin(germany_list)]
+threshold = 0.6 * len(germany_df)
+germany_df_clean = germany_df.dropna(axis=1, thresh=threshold)
+germany_df_clean.dropna(axis=0, inplace=True)
+germany_df_clean['label'] = germany_df_clean['Country Name'].apply(lambda x: 'Germany' if x == 'Germany' else 'Origin Countries')
+columns_to_groupby = ['year', 'label']
+columns_to_mean = ['GDP growth (annual %)', 'GDP per capita (current US$)', 'Inflation, consumer prices (annual %)', 'Life expectancy at birth, total (years)', 'Population growth (annual %)']
+germany = germany_df_clean.groupby(columns_to_groupby)[columns_to_mean].mean().reset_index()
+count_per_year = germany.groupby('year')['label'].nunique()
+germany_df = germany[germany['year'].isin(count_per_year[count_per_year == 2].index)]
+```
+
+
+```{python}
+#Germany WDI profile
+# Assuming 'origin' column represents the origin country
+germany_data = germany_df[germany_df['label'] == 'Germany']
+origin_data = germany_df[germany_df['label'] == 'Origin Countries']  # Replace 'origin' with the actual origin country name
+
+# Create subplots with 2 rows and 2 columns
+fig, axs = plt.subplots(3, 1, figsize=(10, 8))
+fig.suptitle('Comparison of Financial indexes in Germany and Origin Countries')
+
+# Plot life expectancy in the first subplot
+axs[0].plot(origin_data['year'], origin_data['Life expectancy at birth, total (years)'], color='red', label='Origin Countries')
+axs[0].plot(germany_data['year'], germany_data['Life expectancy at birth, total (years)'], color='blue', label='Germany')
+axs[0].set_title('Life expectancy')
+axs[0].legend()
+
+# Plot GDP per capita in the second subplot
+axs[1].plot(origin_data['year'], origin_data['GDP per capita (current US$)'], color='red', label='Origin Countries')
+axs[1].plot(germany_data['year'], germany_data['GDP per capita (current US$)'], color='blue', label='Germany')
+axs[1].set_title('GDP per capita')
+axs[1].legend()
+
+# Plot inflation in the third subplot
+axs[2].plot(origin_data['year'], origin_data['Inflation, consumer prices (annual %)'], color='red', label='Origin Countries')
+axs[2].plot(germany_data['year'], germany_data['Inflation, consumer prices (annual %)'], color='blue', label='Germany')
+axs[2].set_title('Inflation')
+axs[2].legend()
+
+# Adjust layout
+fig.tight_layout(rect=[0, 0, 1, 0.96])
+
+plt.show()
+```
+
+
+## Saudi Arabia Profile
+
+```{python}
+# Saudi Arabia Dataset
+#| include: false
+saudi_list = ['Saudi Arabia', 'India', 'Bangladesh', 'Pakistan' , 'Indonesia', 'Egypt']
+saudi_df = pivoted_wdi[pivoted_wdi['Country Name'].isin(saudi_list)]
+threshold = 0.6 * len(saudi_df)
+saudi_df_clean = saudi_df.dropna(axis=1, thresh=threshold)
+saudi_df_clean.dropna(axis=0, inplace=True)
+saudi_df_clean['label'] = saudi_df_clean['Country Name'].apply(lambda x: 'Saudi Arabia' if x == 'Saudi Arabia' else 'Origin Countries')
+columns_to_groupby = ['year', 'label']
+columns_to_mean = ['GDP growth (annual %)', 'GDP per capita (current US$)', 'Inflation, consumer prices (annual %)', 'Life expectancy at birth, total (years)', 'Population growth (annual %)']
+saudi = saudi_df_clean.groupby(columns_to_groupby)[columns_to_mean].mean().reset_index()
+count_per_year = saudi.groupby('year')['label'].nunique()
+saudi_df = saudi[saudi['year'].isin(count_per_year[count_per_year == 2].index)]
+```
+
+```{python}
+#Saudi Arabia WDI profile
+# Assuming 'origin' column represents the origin country
+saudi_arabia_data = saudi_df[saudi_df['label'] == 'Saudi Arabia']
+origin_data = saudi_df[saudi_df['label'] == 'Origin Countries']  # Replace 'origin' with the actual origin country name
+
+# Create subplots with 2 rows and 2 columns
+fig, axs = plt.subplots(3, 1, figsize=(10, 8))
+fig.suptitle('Comparison of Financial indexes in Saudi Arabia and Origin Countries')
+
+# Plot life expectancy in the first subplot
+axs[0].plot(origin_data['year'], origin_data['Life expectancy at birth, total (years)'], color='red', label='Origin Countries')
+axs[0].plot(saudi_arabia_data['year'], saudi_arabia_data['Life expectancy at birth, total (years)'], color='blue', label='Saudi Arabia')
+axs[0].set_title('Life expectancy')
+axs[0].legend()
+
+# Plot GDP per capita in the second subplot
+axs[1].plot(origin_data['year'], origin_data['GDP per capita (current US$)'], color='red', label='Origin Countries')
+axs[1].plot(saudi_arabia_data['year'], saudi_arabia_data['GDP per capita (current US$)'], color='blue', label='Saudi Arabia')
+axs[1].set_title('GDP per capita')
+axs[1].legend()
+
+# Plot inflation in the third subplot
+axs[2].plot(origin_data['year'], origin_data['Inflation, consumer prices (annual %)'], color='red', label='Origin Countries')
+axs[2].plot(saudi_arabia_data['year'], saudi_arabia_data['Inflation, consumer prices (annual %)'], color='blue', label='Saudi Arabia')
+axs[2].set_title('Inflation')
+axs[2].legend()
+
+# Adjust layout
+fig.tight_layout(rect=[0, 0, 1, 0.96])
+
+plt.show()
+```
+
+
+## <span style="font-size: 0.9 em;"> Comparing selected countries regarding Financial Indexes </span>
+
+
+```{python}
+# filtering three countries in WDI Dataset
+#| include: false
+country_list = ['Germany','Saudi Arabia','United States of America']
+filtered_wdi = pivoted_wdi[pivoted_wdi['Country Name'].isin(country_list)]
+# consider only columns which have more than 60% valid data
+threshold = 0.6 * len(filtered_wdi)
+df_cleaned = filtered_wdi.dropna(axis=1, thresh=threshold)
+df_cleaned.dropna(axis=0, inplace=True)
+
+# Selecting the years that have data available for the 3 countries
+count_per_year = df_cleaned.groupby('year')['Country Name'].nunique()
+df_cleaned_common = df_cleaned[df_cleaned['year'].isin(count_per_year[count_per_year == 3].index)]
+
+```
+
+
+```{python}
+# considering all the countries during different years 
+#| include: false
+count_per_year = filtered_wdi.groupby('year')['Country Name'].nunique()
+filtered_wdi = filtered_wdi[filtered_wdi['year'].isin(count_per_year[count_per_year == 3].index)]
+```
+
+
+```{python}
+# Create an interactive bubble graph using Plotly Express
+
+fig = px.scatter(
+    df_cleaned_common,
+    x= 'Inflation, consumer prices (annual %)',
+    y= 'Life expectancy at birth, total (years)',
+    size= 'GDP per capita (current US$)',
+    color= 'Country Name', 
+    animation_frame= 'year',
+    title= 'Comparing the selected countries of destination'
+)
+
+fig.add_annotation(
+    text= 'Size represents the GDP per capita',
+    xref= 'paper',
+    yref= 'paper',
+    x=0.02,
+    y=1,
+    showarrow=False,
+    font=dict(size=14),
+)
+
+fig.update_layout(
+    xaxis_title='Inflation',
+    yaxis_title='Life Expectancy',
+    showlegend=True,
+    height=600,
+    width=850
+)
+
+fig.update_xaxes(range=[-3,11])
+fig.update_yaxes(range=[60, 90])
+
+fig.show()
+```
+
+
+# <span style="text-align: center; justify-content: center; font-size: 1.4em;">Outcomes</span>
+## Summary
+<span style="font-size: 1.3em;"> Based on our plots in our desired countries, we can see:</span>
+
++ <span style="font-size: 1.3em;"> Life expectancy is on a steady rise, though occasional fluctuations occur in the origin country. </span>
+
++ <span style="font-size: 1.3em;"> Destination's GDP sees a significant and consistent increase, while in the origin countries, it remains consistently low.</span>
+
++ <span style="font-size: 1.3em;"> Similarly, both the Destination and the origin countries experience generally low and stable inflation, punctuated by occasional fluctuations.</span>
+
+<span style="font-size: 1.3em;"> In general, it seems GDP per capita is an important financial factor in immigration and Emigration </span>

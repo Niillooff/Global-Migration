@@ -1,0 +1,2142 @@
+---
+title: "Global Migration and Attractive Destinations"
+author: "Niloufar & Nasim"
+format: 
+  html:
+    toc: true 
+    toc-depth: 3 
+    number-sections: true
+    code-fold: true
+    code-tools: true
+bibliography: references.bib
+---
+
+```{=html}
+<iframe class="slide-deck" style="border:1px solid lightgray;" width="100%" height="500" src="presentation.html"></iframe>
+```
+
+[Presentation in standalone browser tab.](presentation.html){.internal target="_blank"}
+
+# Executive Summary
+
+<p style="text-align: justify;" >
+Migration is a complex phenomenon that has societal, economic, cultural and environmental impact on the countries involved. The phenomenon of human migration has been in existence since the beginning of human existence. According to researchers, the decisions to migrate can be categorized into factors associated with areas of origin, factors associated with the destination area, intervening obstacles and personal factors.
+<p style="text-align: justify" >
+The push factors influencing migration involve conditions that force individuals to leave their homes. They can be categorized into economic, social and political factors. The pull factors to migration are the opposite of push factors, and they involve the various aspects that attract people to certain location. Similar the push factors, pull factors can be categorized into economic, social and political migration pull factors. According to searches, economic factors that pull migrants include indices such as hope for better employment, better shelter, more income and food, and higher living standards. 
+<p style="text-align: justify" >
+Similarly, various social and political factors contribute to the pulling of migrants to other regions or countries. Social factors such as religious tolerance and better educational opportunities in some countries contribute to the pull of migrants. Some of the social factors that pull migrants to developed countries such as the US and other European countries include better health care and increased religious tolerance. Some of the political pull factors influencing migration also include factors such as the right to vote and freedom from persecution and improved protection under the law and safety.
+<p style="text-align: justify" >
+This comprehensive study illuminates an increasing trend on international migrant stock during 1960 until 2020. Then, we focused on the demographic characteristics such as gender and age range. During the years, the ratio of migration stock distribution among males and females were almost consistent where men had a slightly higher migration stock compared to women. In addition, young adults had always consisted biggest amount of migrant stock while children consisted the least.
+<p style="text-align: justify" >
+Regarding the geographical areas in the last year of study (2020), Asia, Europe and North America had the highest number of migrants. Within these continents, the regions of Northern America, Western Europe and Western Asia have the highest number of international migrant stocks, respectively. According to this, the top 3 attractive destinations (United States of America, Germany, and Saudi Arabia) and their correspondent top 5 origin countries were selected for further studies. 
+<p style="text-align: justify" >
+The results depict that all three destination countries have a significant economic and social advantage over their respective origin countries, with higher GDP per capita and life expectancy. However, the inflation rate of Germany and the United States didn’t show a meaningful differences compared to their origin countries.
+<p style="text-align: justify" >
+Policymakers and stakeholders should consider the nuanced economic and social contexts when formulating immigration policies, recognizing the unique needs and contributions of diverse migrant groups.
+</p>
+
+
+# Introduction
+
+<p style="text-align: justify;" >
+<b>Migration</b> is a phenomenon that has been occurring for hundreds of years, yet it is still a complex and ever-evolving topic. Migration is the process of moving from one place to another, either temporarily or permanently, with people relocating for various reasons, such as seeking better living conditions, economic opportunities, or fleeing from violence.
+<p style="text-align: justify;" >
+<b>Migrant</b> is an umbrella term which has not been defined in international law, reflecting the general lay understanding of people who have relocated from their normal home in a foreign country temporarily or permanently. On international levels there is no universal definition of "migrant". [@whatismig]
+<p style="text-align: justify;" >
+While there is no formal legal definition of an <i>International migrant</i> regarding the <b>United Nations</b> documentation, most experts agree that an international migrant is someone who changes his or her country of usual residence, irrespective of the reason for migration or legal status. Generally, a distinction is made between short-term or temporary migration, covering movements with a duration between three and 12 months, and long-term or permanent migration, referring to a change of country of residence for a duration of one year or more. 
+There is another definition in <b>World Bank Data</b> documentation. <i>International migrant stock</i> is the number of people born in a country other than that in which they live, including refugees. [@migreport]
+<p style="text-align: justify;" >
+Migration is a complex phenomenon that has both positive and negative impacts on the countries involved. It has been an important factor in the growth and development of societies, economies, and cultures around the world. It has both positive and negative effects on the countries involved. On the positive side, it can lead to economic growth by providing a source of labor and capital. It can also lead to a more diverse and multicultural society, which can bring many benefits. On the negative side, migration can lead to overpopulation and competition for resources, as well as economic, social, and political instability. [@migreport]
+<p style="text-align: justify;" >
+It can also have an impact on the environment. Whether it is people moving from one country to another in search of a better life or animals following seasonal patterns to find food, migration has a major impact on the world. For example, increased migration can lead to increased pressure on natural resources, such as water and land, and can lead to greater pollution and degradation of the environment.
+<p style="text-align: justify;" >
+This report delves into the intricate landscape of international migration, exploring the multifaceted dimensions of migration stock across different countries, regions, and continents. As we navigate through the comprehensive analysis, several key questions will be addressed, shedding light on the evolving nature of migration patterns globally. This study will address the following questions: 
+</p>
+1. How is the Migration Stock changing in different countries, regions and continents during the years?
+    - Which continents have the highest number of international migrants?
+    - Which regions within the continents have the highest number of international migrants?
+    - which countries have the highest number of international migrants? 
+
+2. How is Migration Stock distributed among demographic characteristics such as age and gender?
+    - Migrants are mostly female or male?
+    - Which age group has the most number of migrants?
+    
+3. Which countries have the most number of migrants? 
+    - What are the top 3 attractive destinations for migrants?
+    - For which countries they are attractive?
+
+4. What are the differences between these 3 destinations and their corresponding origin countries in terms of economic and social indices?
+    - Do they have a significant superiority in these indies?
+
+
+# Data Source
+To address our research inquiries, three datasets were utilized, sourced from the following two distinct data repositories.
+
+## United Nations International Migration Stock
+<p style="text-align: justify;" >
+From the UN data source, we selected 2 datasets of <i>age, sex</i>, and <i>origin and destination</i>. These two datasets are in excel format, presenting the estimation of international migrant by age, sex, origin and destination. Estimates are presented for 1990, 1995, 2000, 2005, 2010, 2015 and 2020 and are available for 232 countries and areas of the world. The estimates are based on official statistics on the foreign-born or the foreign population. From these datasets, we extracted the International Migration Stock and population of all countries, regions and continents for different genders and age ranges, as well as the number of exchanged migrants between countries of destination and origin.
+</p>
+Dataset link: <https://www.un.org/development/desa/pd/content/international-migrant-stock>
+
+## WDI Dataset
+
+<p style="text-align: justify;" >
+World Development Indicators (WDI) is the primary World Bank collection of development indicators, compiled from officially recognized international sources. It presents the most current and accurate global development data available, and includes national, regional and global estimates. From this databank, we extracted the GDP, Life Expectancy and Inflation indicators from 1960 to 2022.
+</p>
+Dataset Link: <https://databank.worldbank.org/reports.aspx?source=World-Development-Indicators>
+
+
+```{python}
+#| include: false
+#| results: hide
+import pandas as pd
+import numpy as np
+
+from pandas.core.tools.numeric import to_numeric
+import geopandas as gpd
+
+import plotly as px
+import plotly.express as px # for interactive plots
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
+import matplotlib.pyplot as plt
+
+import os
+import warnings
+warnings.filterwarnings("ignore")
+```
+
+# Visualisation
+
+## Global Migration
+<p style="text-align: justify;" >
+In most discussions on migration, the starting point is usually numbers. Understanding changes in scale, emerging trends and shifting demographics related to global social and economic transformations, such as migration, help us make sense of the changing world we live in and plan for the future.
+<p style="text-align: justify;" >
+Overall, the estimated number of international migrants has increased over the past five decades. The total estimated 280 million people living in a country other than their countries of birth in 2020 was 128 million more than in 1990. This can be depicted from the following bar chart (@fig-imsworldcontinent). 
+<p style="text-align: justify;" >
+From the information presented in the bar chart, it is evident that with the exception of 2015 when Asia held the highest number of international migration stocks, Europe consistently maintains the top position and Asia and Northern America have the second and third place, respectively.
+</p>
+
+
+```{python}
+#| include: false
+#| results: hide
+# First table of Age, Sex dataset. 
+columns_to_exclude =  ['Index','Notes','Location code']
+age_sex = pd.read_excel('Age, Sex.xlsx', 
+                        skiprows = 10, usecols= lambda x: x not in columns_to_exclude ,
+                        sheet_name= None)
+int_migrant_stock = age_sex['Table 1']
+# int_migrant_stock.head(3)
+
+# Second table of Age, Sex dataset. 
+# It contains the total population for different age range and sex from 1960 to 2020
+
+total_population = age_sex['Table 2']
+# total_population.head(3)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Converting the age range columns into age and defining and gender column
+id_vars = ['Year','Region, development group, country or area','Type of data']
+int_migrant_stock = int_migrant_stock.melt(id_vars=id_vars, var_name='age_gender', value_name= 'int_migrant_stock')
+int_migrant_stock[['age','gender']] = int_migrant_stock['age_gender'].str.split('.',expand=True)
+int_migrant_stock.drop(columns = 'age_gender',inplace = True)
+int_migrant_stock['gender'] = int_migrant_stock['gender'].apply(lambda x: 'total' if pd.isna(x) else 'male' if x == '1' else 'female' if x == '2' else x)
+int_migrant_stock = int_migrant_stock.drop_duplicates()
+int_migrant_stock.shape
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+int_migrant_stock.head(3)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Creating new column which indicates the type of object in 'Region, development group, country or area' as Continent, Region and country
+
+titles = []
+
+for index, row in int_migrant_stock.iterrows():
+    text = row['Region, development group, country or area'] 
+    current_indentation = len(text) - len(text.lstrip())
+    
+    if current_indentation == 0:
+        titles.append('World')
+    elif current_indentation == 1:
+        titles.append('Continent')
+    elif current_indentation == 2:
+        titles.append('Region')    
+    elif current_indentation == 3:
+        titles.append('Country') 
+    else:
+        subtitles.append(False)
+int_migrant_stock['title'] = titles
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Create new columns for 'continent' and 'region'
+current_continent = ''
+current_region = ''
+
+# Iterate through the DataFrame and fill in the 'continent' and 'region' columns
+for index, row in int_migrant_stock.iterrows():
+    if row['title'] == 'Continent':
+        current_continent = row['Region, development group, country or area']
+        current_region = ''  # Reset current_region when continent changes
+    elif row['title'] == 'Region':
+        current_region = row['Region, development group, country or area']
+    else:
+        if current_region:
+            int_migrant_stock.at[index, 'continent'] = current_continent
+            int_migrant_stock.at[index, 'region'] = current_region
+        else:
+            int_migrant_stock.at[index, 'continent'] = current_continent
+            int_migrant_stock.at[index, 'region'] = current_continent
+
+# Drop rows with 'continent' values empty (if needed)
+int_migrant_stock = int_migrant_stock[int_migrant_stock['title'] != "Continent"]
+
+# Reset the index of the DataFrame if needed
+int_migrant_stock.reset_index(drop=True, inplace=True)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+int_migrant_stock['continent']=int_migrant_stock['continent'].str.lstrip()
+int_migrant_stock['region']=int_migrant_stock['region'].str.lstrip()
+int_migrant_stock.head()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Converting the age range columns into age and defining and gender column
+id_vars = total_population.columns[:3].to_list()
+total_population = total_population.melt(id_vars = id_vars, var_name = 'age_gender', value_name= 'total_pop' )
+total_population[['age','gender']] = total_population['age_gender'].str.split('.',expand=True)
+total_population.drop(columns = 'age_gender',inplace = True)
+total_population['gender'] = total_population['gender'].apply(lambda x: 'total' if pd.isna(x) else 'male' if x == '1' else 'female' if x == '2' else x)
+total_population = total_population.drop_duplicates()
+total_population.head()
+```
+
+
+```{python}
+#| include: false
+#|output: false
+# Combining 2 datasets of population and migration
+pop_stock = int_migrant_stock.merge(total_population, how= 'inner', 
+                                    on = ['Year' , 'Region, development group, country or area',
+                                          'Type of data' , 'age' , 'gender',])
+
+# Renaming columns
+pop_stock.rename(columns = {'total_pop':'population' , 'Year':'year'}, inplace = True)
+
+# Creating age_range column and removing age column
+pop_stock['age_range'] = pop_stock['age'].apply(lambda x: 'children' if x in ['0-4', '5-9', '10-14'] else
+                                                'young adult' if x in [' 15-19', '20-24', '25-29', '30-34', '35-39'] else
+                                                'middle_age adult' if x in ['40-44', '45-49', '50-54', '55-59'] else
+                                                'old adult' if x in ['60-64', '65-69','70-74', '75+'] else x)
+pop_stock.drop(columns = 'age',inplace = True)
+
+pop_stock.head()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# replacing the .. value in dataset with NA and changing the values of migration stock and population into number
+pop_stock = pop_stock.replace('..', pd.NA)
+pop_stock[['int_migrant_stock','population']] = pop_stock[['int_migrant_stock','population']].apply(pd.to_numeric)
+pop_stock['population'] = pop_stock['population'].apply(lambda x: x*1000)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Removing rows that contain WORLD as Region, development group, country or area
+pop_stock = pop_stock[pop_stock['Region, development group, country or area'] != 'WORLD'].reset_index(drop=True)
+
+# Removing rows that contain NA in 'int_migrant_stock' and 'total_pop' columns
+pop_stock.dropna(subset = ['int_migrant_stock', 'population'] , inplace = True)
+
+pop_stock.head(3)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Removing rows that contain Nan value in their 'type of data' column.
+pop_stock.dropna(subset=['Type of data'],inplace = True)
+
+# Renaming the column
+pop_stock = pop_stock.rename(columns = {'Region, development group, country or area':'country'}).reset_index(drop = True)
+
+# Editing some of the names of countries like removing extra spaces and * and coverting the first letter of countries name to capital
+pop_stock['country'] = pop_stock['country'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+pop_stock['continent'] = pop_stock['continent'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+pop_stock['region'] = pop_stock['region'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Creating a new column fo the total population for the destination country in each year
+years = list(pop_stock.year.unique())
+countries = list(pop_stock['country'].unique())
+
+# Create a dictionary to store pre-calculated total_pop values
+total_pop_dict = {}
+
+for year in years:
+    for country in countries:
+        # Filter the DataFrame for the specific year, country, age, and gender criteria
+        mask = (pop_stock['year'] == year) & (pop_stock['country'] == country) & (pop_stock['age_range'] == 'Total') & (pop_stock['gender'] == 'total')
+          
+        if not pop_stock[mask].empty:
+            total_pop = pop_stock[mask]['population'].values[0]
+            total_pop_dict[(year, country)] = total_pop
+            
+pop_stock['total_population'] = pd.Series(list(zip(pop_stock['year'], pop_stock['country']))).map(total_pop_dict.get)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+pop_stock[(pop_stock['age_range'] == 'Total')  & (pop_stock['year'] == 1990)  & (pop_stock['country'] == 'Burundi')]
+```
+
+
+```{python}
+#| include: false
+# Creating a new column named migration percentage which is the percentage of migration stock devided by total population
+pop_stock['mig_percentage'] = (pop_stock['int_migrant_stock']*100/pop_stock['population'])
+pop_stock['total_mig_percentage'] = (pop_stock['int_migrant_stock']*100/pop_stock['total_population'])
+
+# Reordering the columns
+column_order = ['year' , 'country' , 'continent' , 'region' , 'gender' , 'age_range' ,
+                'int_migrant_stock' , 'population', 'mig_percentage' ,
+                'total_population', 'total_mig_percentage']
+pop_stock = pop_stock[column_order]
+
+pop_stock.head()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+pop_stock.info()
+```
+
+   
+```{python}
+#| include: false
+#| results: hide
+# Matching the names of countries in our dataSet by countries name in reference map
+pop_stock['country'] = pop_stock['country'].apply(lambda x: 'Antigua and Barbuda' if x == 'Antigua And Barbuda' else
+                                                            'The Bahamas' if x == 'Bahamas' else
+                                                            'Bolivia' if x == 'Bolivia (Plurinational State Of)' else
+                                                            'Bosnia and Herzegovina' if x == 'Bosnia And Herzegovina' else
+                                                            'Brunei' if x == 'Brunei Darussalam' else
+                                                            'Cape Verde' if x == 'Cabo Verde' else
+                                                            'Hong Kong S.A.R.' if x == 'China, Hong Kong Sar' else 
+                                                            'Macao S.A.R' if x == 'China, Macao Sar' else 
+                                                            'Republic of Congo' if x == 'Congo' else 
+                                                            'North Korea' if x == 'Dem. People\'S Republic Of Korea' else
+                                                            'Democratic Republic of the Congo' if x == 'Democratic Republic Of The Congo' else 
+                                                            'Falkland Islands' if x == 'Falkland Islands (Malvinas)' else 
+                                                            'Guinea Bissau' if x == 'Guinea-Bissau' else
+                                                            'Iran' if x == 'Iran (Islamic Republic Of)' else
+                                                            'Isle of Man' if x == 'Isle Of Man' else
+                                                            'Federated States of Micronesia' if x == 'Micronesia (Fed. States Of)' else
+                                                            'South Korea' if x == 'Republic Of Korea' else 
+                                                            'Saint Kitts and Nevis' if x == 'Saint Kitts And Nevis' else
+                                                            'Saint Pierre and Miquelon' if x == 'Saint Pierre And Miquelon' else 
+                                                            'Saint Vincent and the Grenadines' if x == 'Saint Vincent And The Grenadines' else
+                                                            'Sao Tome and Principe' if x == 'Sao Tome And Principe' else 
+                                                            'Republic of Serbia' if x == 'Serbia' else
+                                                            'Russia' if x == 'Russian Federation' else 
+                                                            'Sint Maarten' if x == 'Sint Maarten (Dutch Part)' else 
+                                                            'Palestine' if x == 'State Of Palestine' else
+                                                            'Syria' if x == 'Syrian Arab Republic' else 
+                                                            'Trinidad and Tobago' if x == 'Trinidad And Tobago' else
+                                                            'Turks and Caicos Islands' if x == 'Turks And Caicos Islands' else
+                                                            'United Republic of Tanzania' if x == 'United Republic Of Tanzania' else 
+                                                            'United States of America' if x == 'United States Of America' else
+                                                            'Venezuela' if x == 'Venezuela (Bolivarian Republic Of)' else 
+                                                            'Vietnam' if x == 'Viet Nam' else 
+                                                            'Wallis and Futuna' if x == 'Wallis And Futuna Islands' else x )
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Creating continent dataset
+pop_stock_total = pop_stock[pop_stock['age_range'] == 'Total']
+pop_stock_total = pop_stock_total[pop_stock_total['gender'] == 'total']
+continent_df = pop_stock_total.groupby(['continent','year'])[['population','int_migrant_stock']].sum().reset_index()
+continent_df['mig_percentage'] = (continent_df['int_migrant_stock']*100/continent_df['population'])
+continent_df.head()
+```
+
+
+```{python}
+#| echo: false
+#| label: fig-imsworldcontinent
+#| fig-cap: "Total International Migrant Stock, Separated by Continent"
+# Yearly Barchart stacked by continent
+continent_df.sort_values('int_migrant_stock', ascending=False, inplace = True)
+fig = px.bar(continent_df, x='year', y='int_migrant_stock', color='continent', barmode='stack')
+
+fig.update_layout(
+    xaxis_title='year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title = 'International Migrant Stock per Continent',
+    height=400
+)
+
+# Addin annotation
+continent_df['cumulative_migrant_stock'] = continent_df.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the stacked bar chart
+fig = px.bar(continent_df, x='year', y='int_migrant_stock', color='continent', barmode='stack')
+
+# Add cumulative annotations with separator
+separator = ','  # Choose your separator, e.g., ',' or '.'
+for year in continent_df['year'].unique():
+    cumulative_value = continent_df.loc[continent_df['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the chosen separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title='Total International Migrant Stock',
+    height=600,
+    width=850
+)
+
+fig.show()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+world_df = continent_df.groupby('year')[['population', 'int_migrant_stock']].sum().reset_index()
+world_df['mig_percentage'] = world_df['int_migrant_stock']/world_df['population']
+world_df
+```
+
+<p style="text-align: justify;" >
+In the subsequent line chart (@fig-imspopcompare), it becomes evident that the international migrant stock is experiencing exponential growth, surpassing the global population growth rate.
+</p>
+
+```{python}
+#| echo: false
+#| label: fig-imspopcompare
+#| fig-cap: "Comparison of International Migrant Stock and Population"
+# Comparing the increasing trend of population and migration stock
+years = sorted(list(continent_df['year'].unique()))
+population = world_df['population'] 
+int_migration_stock = world_df['int_migrant_stock']
+
+
+# Create a figure and axis
+fig, ax1 = plt.subplots(figsize=(8, 4))
+
+# Plotting the world population on the first axis
+ax1.set_xlabel('Year')
+ax1.set_ylabel('World Population', color='tab:blue')
+ax1.plot(years, population, color='tab:blue')
+ax1.tick_params(axis='y', labelcolor='tab:blue')
+
+# Create a second y-axis to plot migration stock
+ax2 = ax1.twinx()
+ax2.set_ylabel('International Migration Stock', color='tab:orange')
+ax2.plot(years, int_migration_stock, color='tab:orange')
+ax2.tick_params(axis='y', labelcolor='tab:orange')
+
+# Show the plot
+plt.title('World Population and Migration Stock Over Time')
+plt.show()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Creating Region dataset
+region_df = pop_stock_total.groupby(['region','continent','year'])[['population','int_migrant_stock']].sum().reset_index()
+region_df['mig_percentage'] = (region_df['int_migrant_stock']*100/region_df['population'])
+region_df.head(10)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+region_df.sort_values(['region', 'continent', 'year'], ascending=[True, True, False], inplace=True)
+region_df.sort_values(['region', 'continent','int_migrant_stock'], ascending=False, inplace = True)
+region_df.head(5)
+```
+
+
+## Migration within Continents
+<p style="text-align: justify;" >
+The subsequent bar chart (@fig-imsinregion) offers further insights into each continent, highlighting Northern America as the region with the highest count of International Migration Stock. In the initial year of analysis (1990), Eastern Europe and Southern Asia held the second and third positions, respectively. By 1995, Western Europe surpassed Southern Asia, securing the third position. In 2000, Western Europe overtook Eastern Europe, claiming the second position. In 2005, Western Asia ascended to the third place, and from 2010 onward, it consistently held the second position, while Western Europe shifted to the third position.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-imsinregion
+#| fig-cap: "International Migration Stock, Comparison between Continents and Regions"
+# Migration Stock in Continents and Regions Between 1990 to 2020
+
+region_df.sort_values('int_migrant_stock', ascending=False, inplace = True)
+
+unique_years = region_df['year'].unique()[::-1]
+
+fig = px.bar(region_df, x='continent', y='int_migrant_stock', color='region', barmode='stack', 
+             animation_frame='year', animation_group='region',
+             category_orders={"year": unique_years})
+
+fig.update_layout(
+    xaxis_title='Continent',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title='International Migration Stock in Continents and Regions',
+    xaxis_title_standoff=0,
+    xaxis_tickangle=20,
+    height=700, 
+    width=850
+)
+
+fig.update_yaxes(range=[0, region_df['int_migrant_stock'].max() * 1.6])  # Adjust the multiplier as needed
+
+fig.show()
+
+```
+
+## Comparing Regions based on their International Migration Stock and Population
+<p style="text-align: justify;" >
+The following bubble plot (@fig-imspopregioncompare) provides information on the population and the number of International Migrant Stock in each region. Each continent's regions are represented by distinct colors. As illustrated in the plot, within Asia, only Western Asia exhibits a high number of international migrant stock, whereas in Europe, all four regions boast a relatively high count. Northern America (which has just one region with the same name) has the highest count of International Migrant Stock. Additionally, regions in Oceania, Africa, Latin America, and other parts of Asia do not show a significant presence of migration stock.
+<p style="text-align: justify;" >
+It is worth noting that highly populated regions in Asia display a notably low percentage of international migrant stock, a trend reflected in the size of the bubbles.
+</p>
+
+
+```{python}
+#| echo: false
+#| fig-cap: "Comparion of Regions based on International Migrant Stock and Population"
+#| label: fig-imspopregioncompare
+# Migration trend in different regions in bubble graph 
+unique_years = region_df['year'].unique()[::-1]
+
+fig = px.scatter(
+    region_df,
+    x= 'population',
+    y= 'int_migrant_stock',
+    size= 'mig_percentage',
+    color= 'continent', 
+    hover_name= 'region', 
+    animation_frame= 'year',
+    category_orders={"year": unique_years},
+    title= 'Comparion of Regions based on International Migrant Stock and Population'
+)
+
+fig.add_annotation(
+    text= 'Size represents migration percentage',
+    xref= 'paper',
+    yref= 'paper',
+    x=0.02,
+    y=1,
+    showarrow=False,
+    font=dict(size=14),
+)
+
+fig.update_layout(
+    xaxis_title='Population',
+    yaxis_title='Migration Stock',
+    showlegend=True,
+    xaxis_tickformat='s',
+    height=600, 
+    width=850
+)
+
+fig.update_xaxes(range=[0,1.95e+09])
+fig.update_yaxes(range=[0, 6.1e+07])
+
+fig.show()
+
+```
+
+
+## International Migration Stock on the World Map
+<p style="text-align: justify;" >
+In this section of the report, our focus shifts to examining the changes in International Migration Stock through world maps. The first map (@fig-imsmap) utilizes International Migration Stock count as the variable, while the second map (@fig-imspercmap) considers International Migration Stock per population of the destination country. 
+<p style="text-align: justify;" >
+The initial map illustrates a consistent trend where the United States of America maintains the highest count of international migration stock.
+<p style="text-align: justify;" >
+On the other hand, the second map reveals that Arabic countries around the Persian Gulf exhibit the highest percentage of migrants, with figures such as 88% in the United Arab Emirates, 77% in Qatar, and 72% in Kuwait as of 2020.
+</p>
+
+```{python}
+#| include: false
+#| results: hide
+# Reading the map file data
+shape_map = gpd.read_file('countries.geojson')
+shape_map.info()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Merging the map file dataSet with pop_mig
+pop_stock_map = shape_map.merge(pop_stock, left_on = 'ADMIN', right_on = 'country', how = 'inner')
+```
+
+```{python}
+#| echo: false
+#| label: fig-imsmap
+#| fig-cap: "International Migration Stock on map"
+# Trends of migrant stock through the time for total age_range and gender
+
+pop_stock_map_total = pop_stock_map[pop_stock_map['age_range'] == 'Total']
+pop_stock_map_total = pop_stock_map_total[pop_stock_map_total['gender'] == 'total']
+
+fig = px.choropleth(
+    pop_stock_map_total,
+    locations='ISO_A3',
+    color='int_migrant_stock',
+    hover_name="ADMIN",
+    projection='natural earth',
+    animation_frame='year',
+    title='International Migrant Stock on map',
+    color_continuous_scale=[
+        (0.0, 'lightblue'),  # Colors for values below the threshold (e.g., light blue)
+        (1, 'darkblue')  # Colors for values above the threshold (e.g., dark blue)
+    ]
+)
+fig.update_layout(height=600, width=850)
+fig.update_geos(showcoastlines=True, coastlinecolor='Black')
+fig.show()
+```
+
+
+```{python}
+#| echo: false
+#| label: fig-imspercmap
+#| fig-cap: "International Migration Stock per Population on map"
+# Trends of migrant stock on map for total age_range and gender
+
+pop_stock_map_total = pop_stock_map[pop_stock_map['age_range'] == 'Total']
+pop_stock_map_total = pop_stock_map_total[pop_stock_map_total['gender'] == 'total']
+
+fig = px.choropleth(
+    pop_stock_map_total,
+    locations='ISO_A3',
+    color='mig_percentage',
+    hover_name="ADMIN",
+    projection='natural earth',
+    animation_frame='year',
+    title='Migration Stock Percentage per Population on map',
+    color_continuous_scale=[
+        (0.0, 'lightblue'),  # Colors for values below the threshold (e.g., light blue)
+        (1, 'darkblue')  # Colors for values above the threshold (e.g., dark blue)
+    ]
+)
+fig.update_layout(height=600, width=850)
+fig.update_geos(showcoastlines=True, coastlinecolor='Black')
+fig.show()
+```
+
+
+##  Migration demographic characteristics
+<p style="text-align: justify;" >
+The dynamics of migration are intertwined with demographic variables, such as age and gender. Gaining insights into the composition of international migration stock across different age groups and genders is crucial for understanding the diverse aspects of this global phenomenon. These demographic factors significantly influence the decision-making processes of individuals and communities as they navigate the complexities of migration. This section aims to present a analysis of the International Migration Stock based on age and gender.
+    
+### Gender Analysis
+<p style="text-align: justify;" >
+In the following plot (@fig-gendersunburst), two sunburst charts are plotted to show the distribution of gender in different continents. Regarding the left hand side plot, in <b>Europe</b> and <b>Northern America</b> the number of female migrants were more than male while in <b>Asia</b> and other continents, the number of male migrants were more or equal to the number of female migrants. 
+<p style="text-align: justify;" >
+The right hand side plot shows that generally, the number of male migrants were always slightly more than female migrants.
+<b>Female</b> migrants has always selected Europe as their first destination and Asia, Northern America and Africa were ranked next. For <b>male</b>, Asia was the first destination. However in 1995, 2000 and 2005, Europe overtook Asia. Northern America was always the third destination.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-gendersunburst
+#| fig-cap: "Gender Analysis of International Migration Stock"
+# Sunburst plot for 2 path of continent -> gender and gender -> continent
+pop_stock_sunburst = pop_stock[(pop_stock['age_range'] != 'Total') & (pop_stock['gender'] != 'total')]
+
+# Get unique years
+years = pop_stock_sunburst['year'].unique()
+
+# Create subplot with 1 row and 2 columns, specifying subplot types as 'sunburst'
+fig = make_subplots(rows=1, cols=2, subplot_titles=('Path: continent -> gender', 'Path: gender -> continent'), specs=[[{'type': 'sunburst'}, {'type': 'sunburst'}]])
+path_list = [['continent', 'gender'], ['gender', 'continent']]
+
+# Create the sunburst data for each year and add to subplot
+traces = []
+for i, year in enumerate(years):
+    for j, paths in enumerate(path_list):
+        sunburst_fig = px.sunburst(pop_stock_sunburst[pop_stock_sunburst['year'] == year],
+                                   path=paths,
+                                   values='int_migrant_stock',
+                                   title=f'International Migrant Stock and Gender - Year {year}'
+                                   )
+
+        # Add sunburst plot to subplot
+        for trace in sunburst_fig.data:
+            traces.append(trace)
+            fig.add_trace(trace, row=1, col=j + 1)
+
+# Create the button labels and method
+buttons = []
+for i, year in enumerate(years):
+    buttons.append(
+        dict(label=str(year),
+             method='update',
+             args=[{'visible': [(i * len(path_list) <= j < (i + 1) * len(path_list)) for j in range(len(traces))]},
+                   {
+                       "title": f'International Migrant Stock and Gender - {year}',
+                   }
+                   ]
+             )
+    )
+
+# Set layout for the subplots
+fig.update_layout(
+    updatemenus=[
+        dict(type="buttons",
+             showactive=False,
+             buttons=buttons,
+             x=0.473,
+             xanchor="left",
+             y=0.8,
+             yanchor="top",
+                     )
+    ],
+    title="International Migrant Stock and Gender",
+    title_x=0.5,
+    height=600, 
+    width=850,
+    margin=dict(t=50, l=0, r=0, b=0)
+)
+
+# Update trace information
+fig.update_traces(textinfo='label + percent entry')
+
+# Show the figure
+fig.show()
+```
+
+
+### Age Analysis
+<p style="text-align: justify;" >
+In the next plot (@fig-agesunburst), we plotted two sunburst charts to show the distribution of age range in different continents. 
+First of all, we devided our population into 4 age groups based on the below table:
+
+| Title            | Age range   |
+| ---------------- | ----------- |
+| children         | 0-14        |
+| young adult      | 15-39       |
+| middle_age adult | 40-59       |
+| old adult        | +60         |
+    
+<p style="text-align: justify;" >    
+In this figure, the left handside plot shows that in <b>Europe</b>, the highest amount of international migration stocks were young adults and middle_age adults, old adults and children were in second, third and forth places. 
+In <b>Asia</b>, we notice the same trend as Europe but in 2015 and 2020, the amount of children overtakes the old adults.
+In <b>Northern America</b>, the same trend as Europe can be perceived until 2015 where the amount of middle_age adults overtakes the young adults in 2015 and 2020.
+In <b>Africa</b>, until 2010, the largest number belonged to young adults, children and middle_age adults, respectively. From 2010 onwards, middle_age adults overtook children.
+In <b>Latin America and The Caribbean</b>, the same trend as Europe can be noticed. However, From 2010 onwards, children overtook the old adults.
+In <b>Oceania</b>, the highest amount of international migration stocks were young adults and middle_age adults, old adults and chidren were in next places, respectively. However, in 2000 and 2005, middle_age adults overtook the young adults.
+<p style="text-align: justify;" >
+The right handside plot shows that except 1995, 2000 and 2005, most of <b>young adults</b> have selected Asia as their destination. In 1995, 2000 and 2005, Europe was the first destination and Northern America was constantly the third destination. The <b>middle_age adults</b> and <b>old adults</b> constantly selected Europe as their first destination and Asia and Northern America were alternately the second and third destinations.
+For <b>children</b>, Asia is the first destination and Europe and Africa were alternately the second and third destinations.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-agesunburst
+#| fig-cap: "Age Analysis of International Migration Stock"
+# Sunburst plot for 2 path of continent -> gender and gender -> continent
+pop_stock_sunburst = pop_stock[(pop_stock['age_range'] != 'Total') & (pop_stock['gender'] != 'total')]
+
+# Get unique years
+years = pop_stock_sunburst['year'].unique()
+
+# Create subplot with 1 row and 2 columns, specifying subplot types as 'sunburst'
+fig = make_subplots(rows=1, cols=2, subplot_titles=('Path: continent -> age range', 'Path: age range -> continent'), specs=[[{'type': 'sunburst'}, {'type': 'sunburst'}]])
+path_list = [['continent', 'age_range'], ['age_range', 'continent']]
+
+# Create the sunburst data for each year and add to subplot
+traces = []
+for i, year in enumerate(years):
+    for j, paths in enumerate(path_list):
+        sunburst_fig = px.sunburst(pop_stock_sunburst[pop_stock_sunburst['year'] == year],
+                                   path=paths,
+                                   values='int_migrant_stock',
+                                   title=f'International Migrant Stock and Age - Year {year}'
+                                   )
+
+        # Add sunburst plot to subplot
+        for trace in sunburst_fig.data:
+            traces.append(trace)
+            fig.add_trace(trace, row=1, col=j + 1)
+
+# Create the button labels and method
+buttons = []
+for i, year in enumerate(years):
+    buttons.append(
+        dict(label=str(year),
+             method='update',
+             args=[{'visible': [(i * len(path_list) <= j < (i + 1) * len(path_list)) for j in range(len(traces))]},
+                   {
+                       "title": f'International Migrant Stock and Age - {year}',
+                   }
+                   ]
+             )
+    )
+
+# Set layout for the subplots
+fig.update_layout(
+    updatemenus=[
+        dict(type="buttons",
+             showactive=False,
+             buttons=buttons,
+             x=0.473,
+             xanchor="left",
+             y=0.8,
+             yanchor="top"
+        )
+    ],
+    title="International Migrant Stock and Age",
+    title_x=0.5,
+    height=600, 
+    width=850,
+    margin=dict(t=50, l=0, r=0, b=0)
+)
+
+# Update trace information
+fig.update_traces(textinfo='label + percent entry')
+
+# Show the figure
+fig.show()
+```
+
+
+## Selecting the countries of destination
+<p style="text-align: justify;" >
+In this section, our objective is to identify the top-3 destinations that accommodated the highest numbers of migrants for further analysis. To achieve this, we utilized an interactive treemap plot (@fig-treemapregion). Each continent is represented by a specific color in the plot, and the size of each box corresponds to the international migration stock of the continents, arranged from left to right based on their respective sizes.
+<p style="text-align: justify;" >
+It is noteworthy that, with the exception of 2015, Europe consistently had the highest number of migrants throughout the study period. In 2015, Asia surpassed Europe in migration numbers. Similarly, within each continent, the size of each region and country correlates with the number of migrants.
+<p style="text-align: justify;" >
+As observed earlier, in the final year of the study, Northern America, Western Asia, and Western Europe attracted the highest international migration stocks. Examining the box sizes for countries in 2020 reveals that the <b>United States of America</b>, <b>Germany</b> and <b>Saudi Arabia</b> emerged as the most attractive destinations for migrants.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-treemapregion
+#| fig-cap: "Treemap of International Migration Stock"
+# Treemap for selecting the destination country
+pop_stock_Treemap = pop_stock[(pop_stock['age_range'] != 'Total') & (pop_stock['gender'] != 'total')]
+
+years = pop_stock_Treemap['year'].unique()  
+
+# Create the sunburst data for each year
+data = []
+for year in years:
+    data.append(
+        px.treemap(pop_stock_Treemap[pop_stock_Treemap['year'] == year],
+                    path=['continent','region','country'],
+                    values='int_migrant_stock',
+                    title=f'International Migrant Stock Treemap - Year {year}'
+                    ).data[0]
+    )
+
+# Set the initial visibility for all data
+visible_data = [True] * len(data)
+
+# Create the button labels and method
+buttons = []
+for i, year in enumerate(years):
+    buttons.append(
+        dict(label=str(year),
+             method='update',
+             args=[
+                 {'visible': [i == j for j in range(len(data))]},
+                 {'title': f'International Migrant Stock Treemap - {year}'}
+             ]
+        )
+    )
+
+fig = go.Figure(data=data)
+
+fig.update_layout(
+    updatemenus=[
+        dict(type="buttons",
+             showactive=False,
+             buttons=buttons,
+             x=-0.1,
+             xanchor="left",
+             y=0.95,
+             yanchor="top"
+        )
+    ],
+    # title="International Migrant Stock Treemap",
+    title_x=0.5,
+    margin=dict(t=50, l=0, r=0, b=0)
+)
+```
+
+
+```{python}
+#| include: false
+#| fig-cap: "Treemap of International Migration Stock"
+#| label: figtreemap-country
+# Treemap for selecting our destination country (can be deleted)
+pop_stock_Treemap = pop_stock[(pop_stock['age_range'] != 'Total') & (pop_stock['gender'] != 'total')]
+
+years = pop_stock_Treemap['year'].unique()  
+
+# Create the sunburst data for each year
+data = []
+for year in years:
+    data.append(
+        px.treemap(pop_stock_Treemap[pop_stock_Treemap['year'] == year],
+                    path=['continent','country'],
+                    values='int_migrant_stock',
+                    title=f'International Migrant Stock Treemap - Year {year}'
+                    ).data[0]
+    )
+
+# Set the initial visibility for all data
+visible_data = [True] * len(data)
+
+# Create the button labels and method
+buttons = []
+for i, year in enumerate(years):
+    buttons.append(
+        dict(label=str(year),
+             method='update',
+             args=[
+                 {'visible': [i == j for j in range(len(data))]},
+                 {'title': f'International Migrant Stock Treemap - {year}'}
+             ]
+        )
+    )
+
+fig = go.Figure(data=data)
+
+fig.update_layout(
+    updatemenus=[
+        dict(type="buttons",
+             showactive=False,
+             buttons=buttons,
+             x=-0.1,
+             xanchor="left",
+             y=0.95,
+             yanchor="top"
+        )
+    ],
+    title="International Migrant Stock Treemap",
+    title_x=0.5,
+    margin=dict(t=50, l=0, r=0, b=0)
+)
+```
+
+
+# Destination and Origin countries
+<p style="text-align: justify;" >
+In this section of the report, we utilize an additional dataset that comprises information on both destination and origin countries. This dataset allows us to unveil the primary origin countries globally and analyze the top destination countries.
+</p>
+
+```{python}
+#| include: false
+#| results: hide
+# Importing data from Destination and Origin dataset
+columns_to_exclude =  ['Index','Notes of destination','Location code of destination', 'Location code of origin']
+orig_dest_df = pd.read_excel('Destination and Origin.xlsx', skiprows= 10, usecols = lambda x: x not in columns_to_exclude, sheet_name = None )
+orig_dest = orig_dest_df['Table 1']
+orig_dest.head(3)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Creating 2 new columns of dest_title and orig_title
+dest_title = []
+for index, row in orig_dest.iterrows():
+    dest_text = row['Region, development group, country or area of destination']
+    current_indentation = len(dest_text)-len(dest_text.lstrip())
+    
+    if current_indentation == 0:
+        dest_title.append('World')
+    elif current_indentation == 1:
+        dest_title.append('Continent')   
+    elif current_indentation == 2:
+        dest_title.append('Region')
+    elif current_indentation == 3:
+        dest_title.append('Country')
+    else:
+        dest_title.append(False)
+        
+orig_dest['dest_title'] = dest_title
+
+orig_title = []
+for index, row in orig_dest.iterrows():
+    orig_text = row['Region, development group, country or area of origin']
+    current_indentation = len(orig_text)-len(orig_text.lstrip())
+    
+    if 'Other' in orig_text:
+        orig_title.append('Country')
+    elif current_indentation == 0:
+        orig_title.append('World')
+    elif current_indentation == 1:
+        orig_title.append('Continent')   
+    elif current_indentation == 2:
+        orig_title.append('Region')
+    elif current_indentation == 3:
+        orig_title.append('Country')
+    else:
+        orig_title.append(False)
+        
+orig_dest['orig_title'] = orig_title
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Reordering the columns
+column_order = ['Type of data of destination' , 'Region, development group, country or area of destination' , 'dest_title' , 
+            'Region, development group, country or area of origin' , 'orig_title' ]
+orig_dest = orig_dest[column_order + [col for col in orig_dest.columns if col not in column_order]]
+orig_dest.head(3)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Creating year and gender columns
+id_vars = orig_dest.columns[:5].to_list()
+orig_dest = orig_dest.melt(id_vars = id_vars , var_name = 'year_gender' , value_name= 'int_migrant_stock')
+orig_dest['gender'] = orig_dest['year_gender'].apply(lambda x: 'male' if '.1' in str(x) else
+                                                            'female' if '.2' in str(x) else
+                                                            'total')
+orig_dest['year'] = orig_dest['year_gender'].apply(lambda x: str(x).split('.')[0] if '.' in str(x) else
+                                                           x).apply(pd.to_numeric)
+orig_dest.drop(columns = 'year_gender', inplace = True)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# filtering the dataset based on the the value of Country for dest_title and orig_title
+orig_dest = orig_dest[(orig_dest['dest_title']=='Country') & (orig_dest['orig_title']=='Country')]
+
+# Renaming the columns
+orig_dest['dest_country'] = orig_dest['Region, development group, country or area of destination'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+orig_dest['origin_country'] = orig_dest['Region, development group, country or area of origin'].str.replace(r'\*' , '' , regex = True).str.lstrip().str.title()
+
+# Removing the columns
+orig_dest= orig_dest.drop(columns = ['Region, development group, country or area of destination',
+                                     'dest_title',
+                                     'Region, development group, country or area of origin',
+                                     'orig_title', 
+                                     'Type of data of destination'])
+
+# Reordering the columns
+column_order = ['year' , 'dest_country' , 'origin_country','gender']
+orig_dest = orig_dest[column_order + [col for col in orig_dest.columns if col not in column_order]]
+orig_dest.reset_index(drop = True, inplace = True)
+orig_dest.head(3)
+
+```
+
+## Origin Countries
+<p style="text-align: justify;" >
+In this phase of report, the objective is to assess the top five countries for each destination country. However, before delving into that analysis, we will pinpoint countries with the highest emigration rates in the world, exploring which nations witness the most significant numbers of individuals leaving for new destinations.
+<p style="text-align: justify;" >
+The ensuing bar charts (@fig-toporigin) provide insights into the immigration landscape across various years. In 1990, the Russian Federation led with 12.65 million immigrants, followed by Afghanistan (7.67 million), India (6.61 million), Ukraine (5.54 million), and Bangladesh (5.45 million) in subsequent positions.
+<p style="text-align: justify;" >
+In 1995, the Russian Federation maintained its top position with 11.58 million immigrants. India (7.15 million), Mexico (6.94 million), Ukraine (5.60 million), and Bangladesh (5.42 million) followed in the ranks.
+<p style="text-align: justify;" >
+Moving to the year 2000, the Russian Federation again claimed the highest spot with 10.66 million immigrants. Mexico secured the second position with 9.56 million, while India (7.92 million), China (5.88 million), and Ukraine (5.59 million) occupied the subsequent places.
+<p style="text-align: justify;" >
+By 2005, Mexico took the lead with 10.81 million immigrants, followed by the Russian Federation (10.30 million), India (9.58 million), China (7.33 million), and Ukraine (5.56 million).
+<p style="text-align: justify;" >
+In 2010, India emerged as the top country with 13.22 million immigrants, succeeded by Mexico (12.41 million), the Russian Federation (10.11 million), China (8.71 million), and Bangladesh (6.31 million).
+<p style="text-align: justify;" >
+The trend continued in 2015, with India maintaining its lead with 15.88 million immigrants. Mexico (11.92 million), China (10.24 million), the Russian Federation (10.18 million), and Bangladesh (6.83 million) followed in subsequent positions.
+<p style="text-align: justify;" >
+Finally, in 2020, India retained its top position with 17.86 million immigrants, followed by Mexico (11.18 million), the Russian Federation (10.75 million), China (10.46 million), and Syria Arab Republic (8.45 million).
+<p style="text-align: justify;" >
+It is noteworthy that Syria entered the list post-conflict, underscoring the impact of war on migration dynamics.
+</p>
+
+
+```{python}
+#| include: false
+#| results: hide
+origin_countries = orig_dest[orig_dest['gender'] == 'total'].groupby(['year','origin_country'])['int_migrant_stock'].sum().reset_index()
+top_origin = pd.DataFrame(columns = ['year', 'origin', 'int_migrant_stock'])
+for year in origin_countries['year'].unique():
+    top5_origin = origin_countries[origin_countries['year'] == year]
+    top5_origin.sort_values(by='int_migrant_stock', inplace=True, ascending=False)
+    orig_list = top5_origin.head(6)['origin_country'].unique()
+    top5_origin['origin'] = top5_origin['origin_country'].apply(lambda x: 'other' if x not in orig_list else 'other' if x == "Other" else x)
+    top5_origin = top5_origin.groupby(['year','origin'])['int_migrant_stock'].sum().reset_index()
+    top_origin= pd.merge(top_origin, top5_origin, how='outer')
+top_origin.head(10)
+```
+
+
+```{python}
+#| echo: false
+#| label: fig-toporigin
+#| fig-cap: "Top-5 Origins of International Migration Stock"
+# Stack bar chart for origin countries
+
+top_origin.sort_values('int_migrant_stock', ascending=False , inplace= True)
+
+fig = px.bar(top_origin, x='year', y='int_migrant_stock', 
+             color='origin', 
+             color_continuous_scale='Blues',
+#              color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Add annotation
+top_origin['cumulative_migrant_stock'] = top_origin.groupby(['year'])['int_migrant_stock'].cumsum()
+
+# Add cumulative annotations
+for year in top_origin['year'].unique():
+    cumulative_value = top_origin.loc[top_origin['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the specified separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title='Top-5 Origins of International Migration Stock',
+    height=600,
+    width=850
+)
+
+
+fig.show()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# filter some specific destination countries based on treemap and filtering top 5 origin countries for them
+country_list = ['United States Of America', 'Germany', 'Saudi Arabia', 'Canada', 'France', 'Australia' , 
+                'United Arab Emirates' , 'Russian Federation', 'United Kingdom']
+orig_dest_total = orig_dest[(orig_dest['dest_country'].isin(country_list)) & (orig_dest['gender']=='total')].reset_index(drop = True)
+
+orig_dest_filtered = pd.DataFrame(columns=['year' , 'dest_country' , 'origin_country' , 'gender'])
+for country in country_list:
+    for year in orig_dest_total['year'].unique():
+        df = orig_dest_total[(orig_dest_total['dest_country'] == country) & (orig_dest_total['year'] == year)] 
+        df.sort_values(by='int_migrant_stock', inplace=True, ascending=False)
+        orig_list = df.head(6)['origin_country'].unique() if 'Other' in df.head(5)['origin_country'].unique() else df.head(5)['origin_country'].unique()
+        df['origin_country'] = df['origin_country'].apply(lambda x: 'other' if x not in orig_list else 'other' if x == "Other" else x)
+        df = pd.DataFrame(df.groupby(['year','dest_country','gender','origin_country'])['int_migrant_stock'].sum().reset_index())
+        orig_dest_filtered= pd.merge(orig_dest_filtered, df, how='outer')
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# creating a data set for average of migrant stock in the world
+average_world = {'year': [], 'ave_mig_stock': []}
+
+for year in continent_df['year'].unique():
+    ave_mig_stock = pop_stock_Treemap[pop_stock_Treemap['year'] == year]['int_migrant_stock'].sum() / len(pop_stock_Treemap['country'].unique())
+    average_world['year'].append(year)
+    average_world['ave_mig_stock'].append(ave_mig_stock)
+
+average_world = pd.DataFrame(average_world)
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# creating a data set for average of migrant stock in each region
+country_list = ['United States of America' , 'Germany' , 'Saudi Arabia']
+average_region = {'year': [], 'region': [], 'ave_mig_stock': []}
+for year in pop_stock_Treemap['year'].unique():
+    for region in pop_stock_Treemap['region'].unique():
+        ave_mig_stock = pop_stock_Treemap[(pop_stock_Treemap['year'] == year) & (pop_stock_Treemap['region'] == region) &
+                                          (~pop_stock_Treemap['country'].isin(country_list))]['int_migrant_stock'].sum() / len(pop_stock_Treemap[(pop_stock_Treemap['year'] == year) & (pop_stock_Treemap['region'] == region)]['country'].unique())
+        average_region['year'].append(year)
+        average_region['region'].append(region)
+        average_region['ave_mig_stock'].append(ave_mig_stock)
+
+average_region = pd.DataFrame(average_region)
+```
+
+## Top Destinations
+<p style="text-align: justify;" >
+In this section of the report, the attention is directed towards the selected countries: the United States of America, Germany, and Saudi Arabia, identified as the top three destination countries. The investigation will delve into understanding the origins of migrants drawn to these destinations, along with a comparative analysis between these chosen countries and others within the same region.
+</p>
+
+### United States of America
+#### Sanky Chart
+<p style="text-align: justify;" >
+In the following Sankey plot (@fig-sankeyus), we aim to illustrate the countries contributing the highest number of immigrants to the United States. Each year represents the international migrant stock from the origin country residing in the United States. Notably, throughout the study period, Mexico which has a long border with United States, consistently maintained the highest migration stock in the United States.
+<p style="text-align: justify;">
+In 1990, following Mexico (4.30 million), the top origin countries included Puerto Rico (1.18 million), the Philippines (0.91 million), China (0.77 million), and Canada (0.74 million). 
+<p style="text-align: justify;">
+By 1995, Canada exited the list, and China (1.06 million) and Cuba (0.81 million) assumed the fourth and fifth positions, respectively. 
+<p style="text-align: justify;">
+Moving into 2000, we observe the same order as 1995, but India (1.05 million) replaces Cuba. 
+<p style="text-align: justify;">
+In 2005, Mexico (10.6 million), Puerto Rico (1.62 million), China (1.61 million), the Philippines (1.60 million), and India (1.39 million) secured the first to fifth positions. 
+<p style="text-align: justify;">
+In 2010, China (2.68 million) claimed the second position, and India (2.39 million) secured the third position. The Philippines (1.98 million) and Puerto Rico (1.71 million) maintained their places in the fourth and fifth positions. Notably, Mexico reached its highest number of migrants in 2010 (12.2 million), with China (1.92 million), the Philippines (1.84 million), India (1.78 million), and Puerto Rico (1.71 million) following. 
+<p style="text-align: justify;">
+In 2015, the number of migrants from Mexico (11.6 million) began to decline, with China (2.68 million) retaining the second place and India (2.39 million) surpassing the Philippines (1.98 million). 
+<p style="text-align: justify;">
+In 2020, the number of migrants from China (2.18 million) decreased further, and India (2.72 million) overtook China for the second place.
+<p style="text-align: justify;">
+A considerable observation is that the number of migrants from Mexico at the last year of study is approximately four times higher than that of the second-place countries, highlighting the significant impact of Mexican immigration over the years. However, from 2015 onwards, the numbers of immigrants from Mexico started decreasing, which can be related to the <b>Trump Wall</b>, aimed at reducing illegal crossings from Mexico to the United States.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-sankeyus
+#| fig-cap: "Top-5 Countries of Origin for United States of America"
+# Sankey plot for flow of immigration into United States Of America
+destination = 'United States Of America'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+origin_countries = source_countries['origin_country'].unique().tolist()
+
+# Create a color scale for nodes
+color_scale = [
+    'rgba(255,0,0,0.8)', 'rgba(0,255,0,0.8)', 'rgba(0,0,255,0.8)',
+    'rgba(255,255,0,0.8)', 'rgba(255,0,255,0.8)',
+    'rgba(0,255,255,0.8)', 'rgba(128,0,128,0.8)', 'rgba(255,140,0,0.8)'
+]
+
+# Assign colors to nodes based on origin or destination
+node_colors = [color_scale[i % len(color_scale)] for i in range(len(origin_countries))] + ['rgba(0,0,0,0.8)']
+color_dict = {country: color_scale[i % len(color_scale)] for i, country in enumerate(origin_countries)}
+
+# Function to get a consistent color for a given country
+def get_color(country):
+    return color_dict.get(country, 'rgba(0,0,0,0.8)')
+
+# Create initial Sankey plot
+fig = go.Figure()
+traces = []
+for year in sorted(source_countries['year'].unique().tolist()):
+    filtered_data = source_countries[source_countries['year'] == year]
+
+    # Sort nodes and links based on int_migrant_stock for the current year
+    origin_countries_sorted = (
+        filtered_data.groupby('origin_country')['int_migrant_stock']
+        .sum()
+        .sort_values(ascending=False)
+        .index
+        .tolist()
+    )
+
+    nodes = dict(
+        pad=15,
+        thickness=20,
+        line=dict(color="black", width=0.5),
+        label=origin_countries_sorted + destination_country,
+        color=[get_color(country) for country in origin_countries_sorted] + ['rgba(0,0,0,0.8)']
+    )
+
+    links = dict(
+        source=filtered_data['origin_country'].map(lambda x: origin_countries_sorted.index(x)).tolist(),
+        target=filtered_data['origin_country'].apply(lambda x: len(origin_countries_sorted)).tolist(),
+        value=filtered_data['int_migrant_stock']
+    )
+
+    sankey_trace = go.Sankey(node=nodes, link=links, name=str(year))
+    traces.append(sankey_trace)
+
+# Update layout to include buttons
+fig.update_layout(
+    title_text=f"Top-5 Countries of Origin for {destination}",
+    font_size=14,
+    height=600,
+    width=850,
+    updatemenus=[
+        dict(type="buttons", showactive=False,
+             buttons=[
+                 dict(label=str(year),
+                      method="update",
+                      args=[{"visible": [trace.name == str(year) for trace in traces]},
+                            {"title": f"Top-5 Countries of Origin for {destination} - {year}"}])
+                 for year in sorted(source_countries['year'].unique().tolist())
+             ],
+             x=-0.05,
+             y=1)
+    ]
+)
+
+# Add all traces to the figure
+for trace in traces:
+    fig.add_trace(trace)
+
+fig.show()
+```
+
+
+#### Stacked Barchart of Origin Countries of United States
+<p style="text-align: justify;" >
+In the following plot (@fig-stackedus), a stacked bar chart illustrates the international migration stock in the United States during the years of study, considering the origin countries. Notably, the plot reveals a logarithmic growth in the number of international migration stocks within the United States. 
+<p style="text-align: justify;" >
+The inclusion of a red line further denotes the average international migration stock in region of Northern America, excluding the United States. This region corresponds to the geographic area of the United States. The visualization distinctly highlights that the number of migrant stocks in the United States significantly surpasses that of its region. However, it is essential to note that within Northern America, only the United States and Canada are accounted for as countries.
+</p>
+
+
+```{python}
+#| echo: false
+#| fig-cap: "United States of America's Migrant Stock compared to average amount in the Region"
+#| label: fig-stackedus
+# Stack bar chart for migration stock to United States Of America comparing to the average of migrant stock in correspondent region
+
+destination = 'United States Of America'
+region = 'Northern America'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=400
+)
+
+
+# Add annotation
+source_countries['cumulative_migrant_stock'] = source_countries.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the bar chart
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+# Add cumulative annotations
+for year in source_countries['year'].unique():
+    cumulative_value = source_countries.loc[source_countries['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the specified separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=600,
+    width=850
+)
+
+fig.show()
+```
+
+
+### Germany
+#### Sanky Chart
+<p style="text-align: justify;" >
+In the following Sankey plot (@fig-sankeygermany), we aim to illustrate the countries contributing the highest number of immigrants to the Germany. Similarly to previous Sanky plot, each year represents the international migrant stock from the origin country residing in the Germany. 
+<p style="text-align: justify;">
+In 1990, 1995, 2000, and 2005, Turkey claimed the top position in migration stock with counts of 1.46 million, 1.62 million, 1.60 million, and 1.32 million, respectively. However, in 2010, 2015, and 2020, Turkey secured the second position with counts of 1.31 million, 1.34 million, and 1.84 million, respectively.
+<p style="text-align: justify;">
+In 1990, the countries following Turkey were Italy (0.48 million), Serbia (0.42 million), Poland (0.41 million), and Greece (0.33 million).
+<p style="text-align: justify;">
+By 1995, Serbia (0.51 million), Italy (0.492 million), the Russian Federation (0.491 million), and Poland (0.46 million) took the subsequent positions after Turkey.
+<p style="text-align: justify;">
+In 2000, the order shifted with the Russian Federation (0.9 million), Poland (0.67 million), Serbia (0.59 million), and Italy (0.49 million) standing in the positions following Turkey.
+<p style="text-align: justify;">
+Moving to 2005, Poland (1.16 million), the Russian Federation (0.88 million), Kazakhstan (0.67 million), and Czechia (0.43 million) occupied the next places.
+<p style="text-align: justify;">
+In 2010, Poland (1.53 million) surpassed Turkey (1.31 million), and the Russian Federation (0.85 million), Kazakhstan (0.81 million), and Romania (0.47 million) secured subsequent positions.
+<p style="text-align: justify;">
+In 2015, the same order as 2010 is visible. However, by 2020, the Syrian Arab Republic (with 0.70 million) surpasses Romania, claiming the fifth position.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-sankeygermany
+#| fig-cap: "Top-5 Countries of Origin for Germany"
+# Sankey plot for flow of immigration into Germany
+
+destination = 'Germany'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+origin_countries = source_countries['origin_country'].unique().tolist()
+
+# Create a color scale for nodes
+color_scale = [
+    'rgba(255,0,0,0.8)', 'rgba(0,255,0,0.8)', 'rgba(0,0,255,0.8)',
+    'rgba(255,255,0,0.8)', 'rgba(255,0,255,0.8)',
+    'rgba(0,255,255,0.8)', 'rgba(128,0,128,0.8)', 'rgba(255,140,0,0.8)',
+    'rgba(0,128,0,0.8)', 'rgba(0,0,128,0.8)', 'rgba(128,128,0,0.8)' 
+]
+
+# Assign colors to nodes based on origin or destination
+node_colors = [color_scale[i % len(color_scale)] for i in range(len(origin_countries))] + ['rgba(0,0,0,0.8)']
+color_dict = {country: color_scale[i % len(color_scale)] for i, country in enumerate(origin_countries)}
+
+# Function to get a consistent color for a given country
+def get_color(country):
+    return color_dict.get(country, 'rgba(0,0,0,0.8)')
+
+# Create initial Sankey plot
+fig = go.Figure()
+traces = []
+for year in sorted(source_countries['year'].unique().tolist()):
+    filtered_data = source_countries[source_countries['year'] == year]
+
+    # Sort nodes and links based on int_migrant_stock for the current year
+    origin_countries_sorted = (
+        filtered_data.groupby('origin_country')['int_migrant_stock']
+        .sum()
+        .sort_values(ascending=False)
+        .index
+        .tolist()
+    )
+
+    nodes = dict(
+        pad=15,
+        thickness=20,
+        line=dict(color="black", width=0.5),
+        label=origin_countries_sorted + destination_country,
+        color=[get_color(country) for country in origin_countries_sorted] + ['rgba(0,0,0,0.8)']
+    )
+
+    links = dict(
+        source=filtered_data['origin_country'].map(lambda x: origin_countries_sorted.index(x)).tolist(),
+        target=filtered_data['origin_country'].apply(lambda x: len(origin_countries_sorted)).tolist(),
+        value=filtered_data['int_migrant_stock']
+    )
+
+    sankey_trace = go.Sankey(node=nodes, link=links, name=str(year))
+    traces.append(sankey_trace)
+
+# Update layout to include buttons
+fig.update_layout(
+    title_text=f"Top-5 Countries of Origin for {destination}",
+    font_size=14,
+    height=600,
+    width=850,
+    updatemenus=[
+        dict(type="buttons", showactive=False,
+             buttons=[
+                 dict(label=str(year),
+                      method="update",
+                      args=[{"visible": [trace.name == str(year) for trace in traces]},
+                            {"title": f"Top-5 Countries of Origin for {destination} - {year}"}])
+                 for year in sorted(source_countries['year'].unique().tolist())
+             ],
+             x=-0.05,
+             y=1)
+    ]
+)
+
+# Add all traces to the figure
+for trace in traces:
+    fig.add_trace(trace)
+
+fig.show()
+```
+
+
+#### Stacked Barchart of Origin Countries of Germany
+<p style="text-align: justify;" >
+In the presented plot (@fig-stackedgermany), a stacked bar chart depicts the international migration stock in Germany over the study years, considering the origin countries. Until 2015, a logarithmic growth pattern is evident in the number of international migration stocks. However, in 2020, a notable departure occurred with a sudden increase in the international migrant stock. The number of migrants from other countries surged from 5.11 million to 8.74 million.
+<p style="text-align: justify;" >
+The addition of a red line serves to indicate the average international migration stock in the region of Western Europe, excluding Germany. The visualization underscores a discernible trend wherein the number of migrant stocks in Western Europe is undergoing a gradual exponential growth.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-stackedgermany
+#| fig-cap: "Germany's Migrant Stock compared to average amount in the Region"
+# Stack bar chart for migration stock to germany comparing to the average of migrant stock in correspondent region
+destination = 'Germany'
+region = 'Western Europe'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=400
+)
+
+
+
+# Add annotation
+source_countries['cumulative_migrant_stock'] = source_countries.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the bar chart
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+# Add cumulative annotations
+for year in source_countries['year'].unique():
+    cumulative_value = source_countries.loc[source_countries['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the specified separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=600,
+    width=850
+)
+
+fig.show()
+```
+
+
+### Saudi Arabia
+#### Sanky Chart
+<p style="text-align: justify;" >
+In the following Sankey plot (@fig-sankeysa), we aim to illustrate the countries contributing the highest number of immigrants to the Saudi Arabia. Similarly to previous Sanky plots, each year represents the international migrant stock from the origin country residing in the Saudi Arabia. 
+<p style="text-align: justify;">
+The Sanky plot depicts that during the study period, India, Indonesia, Pakistan, Bangladesh and Egypt stand in first to fifth places. 
+
+
+```{python}
+#| echo: false
+#| label: fig-sankeysa
+#| fig-cap: "Top-5 Countries of Origin for Saudi Arabia"
+# Sankey plot for flow of immigration into Saudi Arabia
+destination = 'Saudi Arabia'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+origin_countries = source_countries['origin_country'].unique().tolist()
+
+# Create a color scale for nodes
+color_scale = [
+    'rgba(255,0,0,0.8)', 'rgba(0,255,0,0.8)', 'rgba(0,0,255,0.8)',
+    'rgba(255,255,0,0.8)', 'rgba(255,0,255,0.8)',
+    'rgba(0,255,255,0.8)', 'rgba(128,0,128,0.8)'
+]
+
+# Assign colors to nodes based on origin or destination
+node_colors = [color_scale[i % len(color_scale)] for i in range(len(origin_countries))] + ['rgba(0,0,0,0.8)']
+color_dict = {country: color_scale[i % len(color_scale)] for i, country in enumerate(origin_countries)}
+
+# Function to get a consistent color for a given country
+def get_color(country):
+    return color_dict.get(country, 'rgba(0,0,0,0.8)')
+
+# Create initial Sankey plot
+fig = go.Figure()
+traces = []
+for year in sorted(source_countries['year'].unique().tolist()):
+    filtered_data = source_countries[source_countries['year'] == year]
+
+    # Sort nodes and links based on int_migrant_stock for the current year
+    origin_countries_sorted = (
+        filtered_data.groupby('origin_country')['int_migrant_stock']
+        .sum()
+        .sort_values(ascending=False)
+        .index
+        .tolist()
+    )
+
+    nodes = dict(
+        pad=15,
+        thickness=20,
+        line=dict(color="black", width=0.5),
+        label=origin_countries_sorted + destination_country,
+        color=[get_color(country) for country in origin_countries_sorted] + ['rgba(0,0,0,0.8)']
+    )
+
+    links = dict(
+        source=filtered_data['origin_country'].map(lambda x: origin_countries_sorted.index(x)).tolist(),
+        target=filtered_data['origin_country'].apply(lambda x: len(origin_countries_sorted)).tolist(),
+        value=filtered_data['int_migrant_stock']
+    )
+
+    sankey_trace = go.Sankey(node=nodes, link=links, name=str(year))
+    traces.append(sankey_trace)
+
+# Update layout to include buttons
+fig.update_layout(
+    title_text=f"Top-5 Countries of Origin for {destination}",
+    font_size=14,
+    height=600,
+    width=850,
+    updatemenus=[
+        dict(type="buttons", showactive=False,
+             buttons=[
+                 dict(label=str(year),
+                      method="update",
+                      args=[{"visible": [trace.name == str(year) for trace in traces]},
+                            {"title": f"Top-5 Countries of Origin for {destination} - {year}"}])
+                 for year in sorted(source_countries['year'].unique().tolist())
+             ],
+             x=-0.05,
+             y=1)
+    ]
+)
+
+# Add all traces to the figure
+for trace in traces:
+    fig.add_trace(trace)
+
+fig.show()
+```
+
+
+#### Stacked Barchart of Origin Countries of Saudi Arabia
+<p style="text-align: justify;" >
+In the displayed plot (@fig-stakedsa), a stacked bar chart illustrates the international migration stock in Saudi Arabia across the study years, considering the origin countries. This depiction reveals a pronounced exponential growth in international migrant stock characterized by a steep slope. Notably, in 2020, the number of international migrant stocks was 2.5 times higher than in 2000.
+<p style="text-align: justify;" >
+The introduction of a red line is employed to signify the average international migration stock in the Western Asia region, excluding Saudi Arabia. The visualization emphasizes a noticeable trend characterized by a gradual exponential growth in the number of migrant stocks in Western Asia, albeit with a slope less steep than that observed in Saudi Arabia.
+</p>
+
+
+```{python}
+#| echo: false
+#| label: fig-stakedsa
+#| fig-cap: "Saudi Arabia's Migrant Stock compared to average amount in the Region"
+# Stack bar chart for migration stock to Saudi Arabia comparing to the average of migrant stock in correspondent region
+destination = 'Saudi Arabia'
+region = 'Western Asia'
+destination_country = [destination]
+source_countries = orig_dest_filtered[orig_dest_filtered['dest_country'] == destination]
+source_countries.sort_values('int_migrant_stock', ascending=False , inplace= True)
+
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=400
+)
+
+
+# Add annotation
+source_countries['cumulative_migrant_stock'] = source_countries.groupby('year')['int_migrant_stock'].cumsum()
+
+# Add the bar chart
+fig = px.bar(source_countries, x='year', y='int_migrant_stock', 
+             color='origin_country', 
+             color_discrete_sequence=px.colors.sequential.Viridis,
+             barmode='stack')
+
+# Adding the line for average migration
+fig.add_trace(px.line(average_region[average_region['region'] == region], x='year', y='ave_mig_stock').update_traces(line=dict(color='red')).data[0])
+
+# Add cumulative annotations
+for year in source_countries['year'].unique():
+    cumulative_value = source_countries.loc[source_countries['year'] == year, 'cumulative_migrant_stock'].max()
+    formatted_value = "{:,}".format(cumulative_value)  # Format the number with the specified separator
+    fig.add_trace(go.Scatter(x=[year], y=[cumulative_value], mode='text', text=[f'{formatted_value}'],
+                             showlegend=False, textposition='top center'))
+
+fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='International Migration Stock',
+    showlegend=True,
+    title=f"{destination}'s Migrant Stock compared to average amount in {region}",
+    height=600,
+    width=850
+)
+
+
+fig.show()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Reading WDI dataset
+wdi = pd.read_excel('wdi.xlsx')
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# WDI Data cleaning and preprocessing
+# Matching the names of countries in our dataSet by countries name in reference map
+
+wdi['Country Name'] = wdi['Country Name'].apply(lambda x: 'Anguilla' if x == 'Angola' else
+                                                            'The Bahamas' if x == 'Bahamas, The' else
+                                                            'Brunei' if x == 'Brunei Darussalam' else
+                                                            'Republic of Congo' if x == 'Congo, Rep.' else 
+                                                            'Democratic Republic of the Congo' if x == 'Congo, Dem. Rep.' else
+                                                            'Cape Verde' if x == 'Cabo Verde' else
+                                                            'Curaçao' if x == 'Curacao' else
+                                                            'Egypt' if x == 'Egypt, Arab Rep.' else
+                                                            'Federated States of Micronesia'if x == 'Micronesia, Fed. Sts.' else
+                                                            'Gambia' if x == 'Gambia, The' else
+                                                            'Guinea Bissau' if x == 'Guinea-Bissau' else
+                                                            'Hong Kong S.A.R.' if x == 'Hong Kong SAR, China' else
+                                                            'Iran' if x == 'Iran, Islamic Rep.' else
+                                                            'Kyrgyzstan' if x == 'Kyrgyz Republic' else
+                                                            'Saint Kitts and Nevis' if x == 'St. Kitts and Nevis' else
+                                                            'South Korea' if x == 'Korea, Rep.' else
+                                                            'Saint Lucia' if x == 'St. Lucia' else
+                                                            'Macao S.A.R' if x == 'Macao SAR, China' else
+                                                            'North Korea' if x =="Korea, Dem. People's Rep." else
+                                                            'Russia' if x == 'Russian Federation' else
+                                                            'Sint Maarten' if x == 'Sint Maarten (Dutch part)' else
+                                                            'Slovakia' if x == 'Slovak Republic' else
+                                                            'Republic of Serbia' if x == 'Serbia' else
+                                                            'Turkey' if x == 'Turkiye' else
+                                                            'Syria' if x == 'Syrian Arab Republic' else
+                                                            'United Republic of Tanzania' if x == 'Tanzania' else 
+                                                            'United States of America' if x == 'United States' else
+                                                            'Venezuela' if x == 'Venezuela, RB' else
+                                                            'United States Virgin Islands' if x == 'Virgin Islands (U.S.)' else
+                                                            'Vietnam' if x == 'Viet Nam' else 
+                                                            'Yemen' if x == 'Yemen, Rep.' else x )
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Transpoing the years into columns
+id_vars = wdi.columns[:4].to_list()
+wdi = wdi.melt(id_vars = id_vars, var_name = 'year', value_name= 'value')
+
+# Removing the extra info from year string
+wdi['year'] = wdi['year'].apply(lambda x: str(x).split(' ')[0])
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# filtering out the dataset an removing the rows for Country Code containing NaN values
+wdi = wdi[wdi['Country Code'].isna()==False]
+
+# Dropping the Series Code column
+wdi.drop('Series Code',axis = 1, inplace = True)
+
+# Replacing '..' with NaN values in the hole dataset
+wdi = wdi.replace('..',pd.NA)
+
+# Changing the numeric variables into numbers
+wdi[['year','value']] = wdi[['year','value']].apply(pd.to_numeric)
+
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# Pivoring the dataset to have indicators as columns
+pivoted_wdi = wdi.pivot(index = ['Country Name','Country Code','year'],
+                               columns = 'Series Name', values = 'value').reset_index()
+```
+
+# Economic and Social Indices
+<p style="text-align: justify;" >
+Various studies have been conducted in the past on the factors affecting migration. Some researches state that economic and ecological factors are the main driving factors behind migration. The economic disparity between developed and developing countries is of the contributing factors that push migrants from poor countries to migrate to developed countries. On the other hand, economic aspects in developed countries such as need for labor also lure migrants seeking better employment opportunities.
+<p style="text-align: justify;" >
+In addition, social factors play a role in individuals’ decisions to migrate to other countries. Migrants from  developing countries are often pushed by social factors such as poverty, lack of employment opportunities, education
+and housing to migrate to countries such as the US. The social factors pushing migration are based on the human desire to achieve better quality of life. Migrants are pushed by social factors such as the need for better education for themselves and their families. [@pushandpull]
+<p style="text-align: justify;" >
+In this part of report, the three following Economic and Social Indices of selected countries of destinations are compared to their correspondent top five origin countries. The data was available from 1960 to 2022. 
+The Indices are as follow:
+<p style="text-align: justify;" >
+- GDP per capita (current US$)
+- Inflation, consumer prices (annual %)
+- Life expectancy at birth, total (years)
+<p style="text-align: justify;" >
+The following plot shows comparisons between the values of the selected indices of destination counties and the average of the same indices in the corresponding origin countries. 
+</p>
+
+## United States of America
+<p style="text-align: justify;" >
+In (@fig-wdius),United States of America was compared to its top five countries of origin during the period of study (India, Mexico, China, Philippines, Puerto Rico, Cuba and Canada).   <p style="text-align: justify;" >
+It can be seen that <b>Life Expectancy</b> in the United States had almost constant growth until 2019 and after that (Covid-19 Pandemic), it started to decline slightly. Overall, the average of life expectancy in origin countries was always less than US. Life expectancy in origin countries is also increasing but with fluctuations. However, the gap is converging after 1981. In the second plot, <b>GDP per Capita</b> of United States is also increasing and it was constantly higher than the average of the origin counties. In addition, the gap between GDP per Capita of US and its origin countries is getting wider</b>.
+<p style="text-align: justify;" >
+In terms of <b>Inflation</b>, both United States and the origin countries have fluctuation but the fluctuation of origin counties is more intense. Exept 1969, 1975 and 2021, United States had less inflation.
+</p>
+
+
+```{python}
+#| include: false
+#| results: hide
+# United States of America Dataset
+us_list = ['United States of America', 'India', 'Mexico', 'China' , 'Philippines', 'Puerto Rico', 'Cuba', 'Canada']
+us_df = pivoted_wdi[pivoted_wdi['Country Name'].isin(us_list)]
+threshold = 0.6 * len(us_df)
+us_df_clean = us_df.dropna(axis=1, thresh=threshold)
+us_df_clean.dropna(axis=0, inplace=True)
+us_df_clean['label'] = us_df_clean['Country Name'].apply(lambda x: 'United States of America' if x == 'United States of America' else 'Origin Countries')
+columns_to_groupby = ['year', 'label']
+columns_to_mean = ['GDP growth (annual %)', 'GDP per capita (current US$)', 'Inflation, consumer prices (annual %)', 'Life expectancy at birth, total (years)', 'Population growth (annual %)']
+us = us_df_clean.groupby(columns_to_groupby)[columns_to_mean].mean().reset_index()
+count_per_year = us.groupby('year')['label'].nunique()
+us_df = us[us['year'].isin(count_per_year[count_per_year == 2].index)]
+```
+
+
+```{python}
+#| echo: false
+#| label: fig-wdius
+#| fig-cap: "Comparison of Financial indices in United States of America and Origin Countries"
+#United States of America WDI profile
+# Assuming 'origin' column represents the origin country
+us_data = us_df[us_df['label'] == 'United States of America']
+origin_data = us_df[us_df['label'] == 'Origin Countries']  # Replace 'origin' with the actual origin country name
+
+# Create subplots with 2 rows and 2 columns
+fig, axs = plt.subplots(3, 1, figsize=(8, 8))
+# fig.suptitle('Comparison of Financial indices in United States of America and Origin Countries')
+
+# Plot life expectancy in the first subplot
+axs[0].plot(origin_data['year'], origin_data['Life expectancy at birth, total (years)'], color='red', label='Origin Countries')
+axs[0].plot(us_data['year'], us_data['Life expectancy at birth, total (years)'], color='blue', label='United States of America')
+axs[0].set_title('Life expectancy')
+axs[0].legend()
+
+# Plot GDP per capita in the second subplot
+axs[1].plot(origin_data['year'], origin_data['GDP per capita (current US$)'], color='red', label='Origin Countries')
+axs[1].plot(us_data['year'], us_data['GDP per capita (current US$)'], color='blue', label='United States of America')
+axs[1].set_title('GDP per capita')
+axs[1].legend()
+
+# Plot inflation in the third subplot
+axs[2].plot(origin_data['year'], origin_data['Inflation, consumer prices (annual %)'], color='red', label='Origin Countries')
+axs[2].plot(us_data['year'], us_data['Inflation, consumer prices (annual %)'], color='blue', label='United States of America')
+axs[2].set_title('Inflation')
+axs[2].legend()
+
+# Adjust layout
+fig.tight_layout(rect=[0, 0, 1, 0.96])
+
+plt.show()
+```
+
+
+## Germany
+<p style="text-align: justify;" >
+In (@fig-wdigermany), Germany was compared to its top five countries of origin during the peiof of study (Poland, Turkey, Russia, Kazakhstan, Syria, Republic of Serbia, Italy, Romania, Czechia and Greece).     
+<p style="text-align: justify;" >
+In Germany, the same as United States, <b>Life Expectancy</b> had almost constant growth until 2019 and started declining slightly after 2019. The average of life expectancy in origin countries of Germany was always less. In the second plot, <b>GDP per Capita</b> of the countries of study is increasing but for Germany, it has a higher rate of growth. <b>Inflation</b> in Germany was almost constant and for countries of origin, there is a pick in 1994. This is because of Kazakhstan which is in the list of origin countries and had an inflation of 1877 %. Inflation in Germany was slightly less than the corresponding origin countries.
+</p>
+
+
+```{python}
+#| include: false
+#| results: hide
+# Germany Dataset
+germany_list = ['Germany', 'Poland', 'Turkey', 'Russia' , 'Kazakhstan', 'Syria', 'Republic of Serbia', 'Italy', 'Romania','Czechia', 'Greece']
+germany_df = pivoted_wdi[pivoted_wdi['Country Name'].isin(germany_list)]
+threshold = 0.6 * len(germany_df)
+germany_df_clean = germany_df.dropna(axis=1, thresh=threshold)
+germany_df_clean.dropna(axis=0, inplace=True)
+germany_df_clean['label'] = germany_df_clean['Country Name'].apply(lambda x: 'Germany' if x == 'Germany' else 'Origin Countries')
+columns_to_groupby = ['year', 'label']
+columns_to_mean = ['GDP growth (annual %)', 'GDP per capita (current US$)', 'Inflation, consumer prices (annual %)', 'Life expectancy at birth, total (years)', 'Population growth (annual %)']
+germany = germany_df_clean.groupby(columns_to_groupby)[columns_to_mean].mean().reset_index()
+count_per_year = germany.groupby('year')['label'].nunique()
+germany_df = germany[germany['year'].isin(count_per_year[count_per_year == 2].index)]
+germany_df.head(3)
+```
+
+
+```{python}
+#| echo: false
+#| label: fig-wdigermany
+#| fig-cap: "Comparison of Financial indexes in Germany and Origin Countries"
+#Germany WDI profile
+# Assuming 'origin' column represents the origin country
+germany_data = germany_df[germany_df['label'] == 'Germany']
+origin_data = germany_df[germany_df['label'] == 'Origin Countries']  # Replace 'origin' with the actual origin country name
+
+# Create subplots with 2 rows and 2 columns
+fig, axs = plt.subplots(3, 1, figsize=(8, 8))
+# fig.suptitle('Comparison of Financial indexes in Germany and Origin Countries')
+
+# Plot life expectancy in the first subplot
+axs[0].plot(origin_data['year'], origin_data['Life expectancy at birth, total (years)'], color='red', label='Origin Countries')
+axs[0].plot(germany_data['year'], germany_data['Life expectancy at birth, total (years)'], color='blue', label='Germany')
+axs[0].set_title('Life expectancy')
+axs[0].legend()
+
+# Plot GDP per capita in the second subplot
+axs[1].plot(origin_data['year'], origin_data['GDP per capita (current US$)'], color='red', label='Origin Countries')
+axs[1].plot(germany_data['year'], germany_data['GDP per capita (current US$)'], color='blue', label='Germany')
+axs[1].set_title('GDP per capita')
+axs[1].legend()
+
+# Plot inflation in the third subplot
+axs[2].plot(origin_data['year'], origin_data['Inflation, consumer prices (annual %)'], color='red', label='Origin Countries')
+axs[2].plot(germany_data['year'], germany_data['Inflation, consumer prices (annual %)'], color='blue', label='Germany')
+axs[2].set_title('Inflation')
+axs[2].legend()
+
+# Adjust layout
+fig.tight_layout(rect=[0, 0, 1, 0.96])
+
+plt.show()
+
+```
+
+
+## Saudi Arabia
+<p style="text-align: justify;" >
+In (@fig-wdisa)Saudi Arabia was compared to its top five countries of origin during the peiof of study (India, Bangladesh, Pakistan, Indonesia and Egypt). 
+<p style="text-align: justify;" >
+In Saudi Arabia, likewise <b>Life Expectancy</b> had a logarithmic growth and unlike Germany and United States, startet increasing in 2020. The average of life expectancy in origin countries of Saudi Arabia was less than it. Howerver, it had a constant growth but it started decreasing after 2019. In terms of <b>GDP per Capita</b>, Saudi Arabia is experiancing a fluctuational growth, which is distinctively higher than origin countries.   of study is increasing but for Germany, it has a higher rate of growth. <b>Inflation</b> in Saudi Arabia was perceptibly less than the origin countries after 1977. 
+</p>
+
+
+```{python}
+#| include: false
+#| results: hide
+# Saudi Arabia Dataset
+saudi_list = ['Saudi Arabia', 'India', 'Bangladesh', 'Pakistan' , 'Indonesia', 'Egypt']
+saudi_df = pivoted_wdi[pivoted_wdi['Country Name'].isin(saudi_list)]
+threshold = 0.6 * len(saudi_df)
+saudi_df_clean = saudi_df.dropna(axis=1, thresh=threshold)
+saudi_df_clean.dropna(axis=0, inplace=True)
+saudi_df_clean['label'] = saudi_df_clean['Country Name'].apply(lambda x: 'Saudi Arabia' if x == 'Saudi Arabia' else 'Origin Countries')
+columns_to_groupby = ['year', 'label']
+columns_to_mean = ['GDP growth (annual %)', 'GDP per capita (current US$)', 'Inflation, consumer prices (annual %)', 'Life expectancy at birth, total (years)', 'Population growth (annual %)']
+saudi = saudi_df_clean.groupby(columns_to_groupby)[columns_to_mean].mean().reset_index()
+count_per_year = saudi.groupby('year')['label'].nunique()
+saudi_df = saudi[saudi['year'].isin(count_per_year[count_per_year == 2].index)]
+saudi_df.head(3)
+```
+
+
+```{python}
+#| echo: false
+#| label: fig-wdisa
+#| fig-cap: "Comparison of Financial indexes in Saudi Arabia and Origin Countries"
+#Saudi Arabia WDI profile
+# Assuming 'origin' column represents the origin country
+saudi_arabia_data = saudi_df[saudi_df['label'] == 'Saudi Arabia']
+origin_data = saudi_df[saudi_df['label'] == 'Origin Countries']  # Replace 'origin' with the actual origin country name
+
+# Create subplots with 2 rows and 2 columns
+fig, axs = plt.subplots(3, 1, figsize=(8, 8))
+# fig.suptitle('Comparison of Financial indexes in Saudi Arabia and Origin Countries')
+
+# Plot life expectancy in the first subplot
+axs[0].plot(origin_data['year'], origin_data['Life expectancy at birth, total (years)'], color='red', label='Origin Countries')
+axs[0].plot(saudi_arabia_data['year'], saudi_arabia_data['Life expectancy at birth, total (years)'], color='blue', label='Saudi Arabia')
+axs[0].set_title('Life expectancy')
+axs[0].legend()
+
+# Plot GDP per capita in the second subplot
+axs[1].plot(origin_data['year'], origin_data['GDP per capita (current US$)'], color='red', label='Origin Countries')
+axs[1].plot(saudi_arabia_data['year'], saudi_arabia_data['GDP per capita (current US$)'], color='blue', label='Saudi Arabia')
+axs[1].set_title('GDP per capita')
+axs[1].legend()
+
+# Plot inflation in the third subplot
+axs[2].plot(origin_data['year'], origin_data['Inflation, consumer prices (annual %)'], color='red', label='Origin Countries')
+axs[2].plot(saudi_arabia_data['year'], saudi_arabia_data['Inflation, consumer prices (annual %)'], color='blue', label='Saudi Arabia')
+axs[2].set_title('Inflation')
+axs[2].legend()
+
+# Adjust layout
+fig.tight_layout(rect=[0, 0, 1, 0.96])
+
+plt.show()
+
+```
+
+
+## Comparing the destinations
+<p style="text-align: justify;" >
+In the following bubble plot (@fig-wdicompare), we can compare the top 3 destinations in term of Life expectancy (x axis), Inflation (y axis) and GDP per capita (as the size of each bubble). 
+<p style="text-align: justify;" >
+During the years of study, life expectancey was increasing for these countries but after covid-19 pandemy, it started decreasing. Germany always had the highest life expectancey among others. Inflation had always fluctuations and for Saudi Arabia, this fluctuation was more intense. GDP per capita for these three countries increased and United States had always the highest GDP.
+</p>
+
+
+```{python}
+#| include: false
+#| results: hide
+# filtering three countries in WDI Dataset
+country_list = ['Germany','Saudi Arabia','United States of America']
+filtered_wdi = pivoted_wdi[pivoted_wdi['Country Name'].isin(country_list)]
+# consider only columns which have more than 60% valid data
+threshold = 0.6 * len(filtered_wdi)
+df_cleaned = filtered_wdi.dropna(axis=1, thresh=threshold)
+df_cleaned.dropna(axis=0, inplace=True)
+
+# Selecting the years that have data available for the 3 countries
+count_per_year = df_cleaned.groupby('year')['Country Name'].nunique()
+df_cleaned_common = df_cleaned[df_cleaned['year'].isin(count_per_year[count_per_year == 3].index)]
+
+df_cleaned_common.head()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+df_cleaned_common.describe()
+```
+
+
+```{python}
+#| include: false
+#| results: hide
+# considering all the countries during different years 
+count_per_year = filtered_wdi.groupby('year')['Country Name'].nunique()
+filtered_wdi = filtered_wdi[filtered_wdi['year'].isin(count_per_year[count_per_year == 3].index)]
+```
+
+
+```{python}
+#| echo: false
+#| label: fig-wdicompare
+#| fig-cap: "Comparison of Top-3 Destination Countries based on Socio-Economic Indices"
+# Create an interactive bubble graph using Plotly Express
+
+fig = px.scatter(
+    df_cleaned_common,
+    x= 'Inflation, consumer prices (annual %)',
+    y= 'Life expectancy at birth, total (years)',
+    size= 'GDP per capita (current US$)',
+    color= 'Country Name', 
+    animation_frame= 'year',
+    title= 'Comparing the selected countries of destination'
+)
+
+fig.add_annotation(
+    text= 'Size represents the GDP per capita',
+    xref= 'paper',
+    yref= 'paper',
+    x=0.02,
+    y=1,
+    showarrow=False,
+    font=dict(size=14),
+)
+
+fig.update_layout(
+    xaxis_title='Inflation',
+    yaxis_title='Life Expectancy',
+    showlegend=True,
+    width=850
+)
+
+fig.update_xaxes(range=[-3,11])
+fig.update_yaxes(range=[60, 90])
+
+fig.show()
+```
+
+
+# Conclusion
+
+<p style="text-align: justify;" >
+In conclusion, our exploration into global migration patterns reveals that while social and economic indices such as GDP and life expectancy play a significant role as pull factors for destination countries, they are not the sole determinants. Various other factors, including but not limited to the distance between origin and destination countries and religious affiliations exert considerable influence and may act as stronge push factors as well.
+<p style="text-align: justify;" >
+The observed trends underscore the multifaceted nature of migration dynamics. For instance, the substantial migration from Mexico to the United States, a neighboring country, emphasizes the impact of geographical proximity. Similarly, Poland's high number of immigrants in Germany suggests that factors beyond economic indicators contribute to migration decisions.
+<p style="text-align: justify;" >
+Examining regions like Saudi Arabia, we find a large influx of immigrants from Pakistan and Indonesia. In this context, religious and cultural ties emerge as influential push factors, shaping migration patterns apart from economic considerations.
+<p style="text-align: justify;" >
+Therefore, a comprehensive understanding of migration requires acknowledging the intricate interplay of diverse factors. Policy interventions and strategies aimed at managing migration effectively must consider the nuanced relationships between economic, social, geographical, and cultural aspects to address the complexity of human mobility in our interconnected world.
+</p>
+
+# References {.unnumbered .appendix}
+
+::: {#refs}
+:::
+chatGPT was used to modify the sentence structure.
